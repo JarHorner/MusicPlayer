@@ -1,7 +1,0 @@
-## Interface: 100100
-## Title: MusicPlayer
-## Notes: Plays different sounds and music from anywhere in World of Warcraft
-## Author: Jarret Horner
-## Version: 0.0.1
-
-MusicPlayer.lua
