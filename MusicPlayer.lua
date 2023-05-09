@@ -29,6 +29,7 @@ local sounds = {
 
 SLASH_SOUND1 = "/playsound"
 SLASH_STOPSOUND1 = "/stopsound"
+SLASH_CHECKSCORE = "/cs"
 
 local customSoundId
 
@@ -84,6 +85,13 @@ local function stopSoundHandler()
     end
 end
 
+local function checkScoreHandler()
+    print("This works")
+    local ratingSummary = C_PlayerInfo.GetPlayerMythicPlusRatingSummary("target")
+    print(ratingSummary[runs])
+end
+
 SlashCmdList["SOUND"] = playSoundHandler
 SlashCmdList["STOPSOUND"] = stopSoundHandler
+SlashCmdList["CHECKSCORE"] = checkScoreHandler
 
