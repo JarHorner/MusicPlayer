@@ -21,7 +21,7 @@ end
 -- Creation of the minimap icon
 local myButton = CreateFrame("Button", "MyAddonIcon", Minimap)
 myButton:SetSize(32, 32)
-myButton:SetPoint("TOPLEFT", Minimap, "TOPRIGHT", 0, 0)
+myButton:SetPoint("BOTTOM", Minimap, "BOTTOM", 10, 0)
 -- myButton:SetNormalTexture("Interface\\Icons\\INV_Misc_QuestionMark")
 myButton:SetMovable(true)
 myButton:RegisterForDrag("LeftButton")
@@ -88,7 +88,7 @@ myButton.tooltipText2 = "Right Click: Hide Minimap Icon"
 -- Sets up the OnEnter and OnLeave script handlers that shows the tooltip
 myButton:SetScript("OnEnter", function(self)
     GameTooltip:SetOwner(self, "ANCHOR_BOTTOMLEFT")
-    GameTooltip:AddLine(self.tooltipTitle)
+    GameTooltip:AddLine(self.tooltipTitle, 1, 1, 1)
     GameTooltip:AddLine(self.tooltipText1)
     GameTooltip:AddLine(self.tooltipText2)
     GameTooltip:Show()

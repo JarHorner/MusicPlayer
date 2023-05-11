@@ -4,9 +4,9 @@
 ## Author: Jarret Horner
 ## Version: 0.0.1
 
+MythicPlusLootTable.lua
+MythicPlusPopup.lua
+
 LootTable.lua
 Icon.lua
 OptionsPanel.lua
-
-MythicPlusLootTable.lua
-MythicPlusPopup.lua
