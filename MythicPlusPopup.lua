@@ -1,7 +1,7 @@
 
-local isMythicPlusActive = C_MythicPlus.IsMythicPlusActive()
+local challengeModeActive = C_ChallengeMode.IsChallengeModeActive()
 
-if (isMythicPlusActive) then
+if (challengeModeActive) then
 
     local activeKeystoneLevel = C_ChallengeMode.GetActiveKeystoneInfo()
     local weeklyRewardLevel, endOfRunRewardLevel = C_MythicPlus.GetRewardLevelForDifficultyLevel(activeKeystoneLevel)

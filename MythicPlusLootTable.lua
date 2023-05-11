@@ -1,12 +1,31 @@
-
 local keyLevels = {2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20}
 
-
 SLASH_CHECKLOOT1 = "/cl"
-
+SLASH_TEST1 = "/test"
 
 local function checkLootHandler()
 
+    f:SetMovable(true)
+    f:EnableMouse(true)
+    f:RegisterForDrag("LeftButton")
+    f:SetScript("OnDragStart", function(self, button)
+        self:StartMoving()
+        print("OnDragStart", button)
+    end)
+    f:SetScript("OnDragStop", function(self)
+        self:StopMovingOrSizing()
+        print("OnDragStop")
+    end)
+    _G["MyFrame"] = f -- adds the frame via the name "MyFrame" to the global variables
+    tinsert(UISpecialFrames, "MyFrame") -- instead frame:GetName() one could just use "MyFrame"
+
+    -- for i = 2, 20, 1 do
+    --     local weeklyRewardLevel, endOfRunRewardLevel = C_MythicPlus.GetRewardLevelForDifficultyLevel(i)
+    --     print("Key level: " .. i .. " weekly reward = " .. weeklyRewardLevel .. " End of run reward = " .. endOfRunRewardLevel)
+    -- end
+end
+
+local function testing()
     local isMythicPlusActive = C_MythicPlus.IsMythicPlusActive()
     if (isMythicPlusActive) then
         print("In M+")
@@ -19,12 +38,7 @@ local function checkLootHandler()
     else
         print("Not challenge")
     end
-
-
-    -- for i = 2, 20, 1 do
-    --     local weeklyRewardLevel, endOfRunRewardLevel = C_MythicPlus.GetRewardLevelForDifficultyLevel(i)
-    --     print("Key level: " .. i .. " weekly reward = " .. weeklyRewardLevel .. " End of run reward = " .. endOfRunRewardLevel)
-    -- end
 end
 
 SlashCmdList["CHECKLOOT"] = checkLootHandler
+SlashCmdList["TEST"] = testing
