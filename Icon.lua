@@ -67,19 +67,17 @@ end)
 myButton:SetScript("OnDragStop", function(self)
     self:StopMovingOrSizing()
 
-    -- -- Restrict the movement of the icon within the bounds of the minimap
-    -- local x, y = self:GetParent():GetCenter()
-    -- local cx, cy = Minimap:GetCenter()
-    -- local scale = Minimap:GetEffectiveScale()
-    -- local radius = (Minimap:GetWidth() / 2) * scale
-    -- local dx, dy = x - cx, y - cy
-    -- local distance = sqrt(dx ^ 2 + dy ^ 2)
-    -- if distance > radius then
-    --     local theta = atan2(dy, dx)
-    --     x, y = cx + radius * cos(theta), cy + radius * sin(theta)
-    --     self:GetParent():ClearAllPoints()
-    --     self:GetParent():SetPoint("CENTER", UIParent, "BOTTOMLEFT", x / scale, y / scale)
-    -- end
+    local posX, posY = self:GetCenter()
+    local mapPosX, mapPosY = Minimap:GetCenter()
+    local scale = Minimap:GetEffectiveScale()
+    local radius = (Minimap:GetWidth()/2) + 6
+    local deltaX, deltaY = posX - mapPosX, posY - mapPosY
+    local distance = math.sqrt(deltaX^2 + deltaY^2)
+    if distance < radius then -- only reposition the button if it's within the minimap circle
+        local angle = math.atan2(deltaY, deltaX)
+        self:ClearAllPoints()
+        self:SetPoint("CENTER", Minimap, "CENTER", math.cos(angle)*radius, math.sin(angle)*radius)
+    end
 end)
 
 -- Set up the tooltip text
