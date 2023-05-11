@@ -21,5 +21,7 @@ function CreateLootTable()
         print("Frame is shown!")
     end)
     -- tinsert(UISpecialFrames, "MyFrame")
-    return MyFrame
+    return myFrame
 end
+
+

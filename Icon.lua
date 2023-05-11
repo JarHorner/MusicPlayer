@@ -1,14 +1,14 @@
-dofile("LootTable.lua")
 
-local frameVisible = false;
-local table = CreateLootTable()
+
+local frameVisible = false
+local lt = CreateLootTable()
 
 local function ToggleFrame()
     if frameVisible then
-        table:Hide()
+        lt:Hide()
         frameVisible = false
     else
-        table:Show()
+        lt:Show()
         frameVisible = true
     end
 end

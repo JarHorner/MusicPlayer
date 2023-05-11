@@ -4,6 +4,7 @@
 ## Author: Jarret Horner
 ## Version: 0.0.1
 
+LootTable.lua
 Icon.lua
 
 MythicPlusLootTable.lua
