@@ -6,6 +6,7 @@
 
 LootTable.lua
 Icon.lua
+OptionsPanel.lua
 
 MythicPlusLootTable.lua
 MythicPlusPopup.lua

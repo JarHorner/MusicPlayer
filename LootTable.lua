@@ -1,3 +1,5 @@
+
+-- Creation of loot table that displays all loot information
 function CreateLootTable()
     local myFrame = CreateFrame("Frame", "MyFrame", UIParent, "UIPanelDialogTemplate")
 
@@ -17,10 +19,7 @@ function CreateLootTable()
     myFrame:SetScript("OnDragStop", function(self)
         self:StopMovingOrSizing()
     end)
-    myFrame:SetScript("OnShow", function(self)
-        print("Frame is shown!")
-    end)
-    -- tinsert(UISpecialFrames, "MyFrame")
+    tinsert(UISpecialFrames, "MyFrame")
     return myFrame
 end
 
