@@ -28,7 +28,7 @@ myButton:RegisterForDrag("LeftButton")
 
 -- Create a circular texture
 local myIcon = myButton:CreateTexture(nil, "BACKGROUND")
-myIcon:SetTexture("Interface\\AddOns\\MythicPlusLootTable\\ring_20px.tga")
+myIcon:SetTexture("Interface\\AddOns\\MythicPlusLootTable\\Circle_Icon_Hourglass.tga")
 myIcon:SetPoint("CENTER", myButton, "CENTER")
 myIcon:SetSize(24, 24)
 
