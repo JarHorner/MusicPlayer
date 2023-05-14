@@ -8,5 +8,6 @@ MythicPlusLootTable.lua
 MythicPlusPopup.lua
 
 LootTable.lua
+ToggleUI.lua
 Icon.lua
 OptionsPanel.lua
