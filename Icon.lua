@@ -4,13 +4,13 @@ local iconVisible = true
 -- Creation of the minimap icon
 local myButton = CreateFrame("Button", "MyAddonIcon", Minimap)
 myButton:SetSize(32, 32)
-myButton:SetPoint("BOTTOM", Minimap, "BOTTOM", 10, 0)
--- myButton:SetNormalTexture("Interface\\Icons\\INV_Misc_QuestionMark")
+myButton:SetPoint("BOTTOMRIGHT", Minimap, "BOTTOMRIGHT", 0, 0)
+myButton:SetFrameLevel(Minimap:GetFrameLevel() + 1)
 myButton:SetMovable(true)
 myButton:RegisterForDrag("LeftButton")
 
 -- Create a circular texture
-local myIcon = myButton:CreateTexture(nil, "BACKGROUND")
+local myIcon = myButton:CreateTexture(nil, "OVERLAY")
 myIcon:SetTexture("Interface\\AddOns\\MythicPlusLootTable\\Circle_Icon_Hourglass.tga")
 myIcon:SetPoint("CENTER", myButton, "CENTER")
 myIcon:SetSize(24, 24)
@@ -34,7 +34,7 @@ end
 myButton:SetScript("OnClick", function(self, button, down)
     if button == "LeftButton" then
         -- Do something when the left mouse button is clicked
-        ToggleFrame()
+        ToggleLootTable()
     elseif button == "RightButton" then
         -- Do something when the right mouse button is clicked
         -- ToggleIcon()

@@ -22,7 +22,7 @@ function CreateLootTable()
     exitButton:SetSize(30, 30)
     exitButton:SetPoint("TOPRIGHT")
     exitButton:SetScript("OnClick", function()
-        ToggleFrame()
+        ToggleLootTable()
     end)
 
     local padding = -32
