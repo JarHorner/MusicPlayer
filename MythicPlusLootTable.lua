@@ -1,13 +1,9 @@
 
-SLASH_CHECKLOOT1 = "/cl"
+SLASH_CHECKLOOT1 = "/lt"
 SLASH_TEST1 = "/test"
 
 local function checkLootHandler()
-
-    for i = 2, 20, 1 do
-        local weeklyRewardLevel, endOfRunRewardLevel = C_MythicPlus.GetRewardLevelForDifficultyLevel(i)
-        print("Key level: " .. i .. " weekly reward = " .. weeklyRewardLevel .. " End of run reward = " .. endOfRunRewardLevel)
-    end
+    ToggleLootTable()
 end
 
 local function testing()

@@ -4,10 +4,13 @@
 ## Author: Jarret Horner
 ## Version: 0.0.1
 
-#MythicPlusLootTable.lua
-#MythicPlusPopup.lua
+libs\LibDBIcon-1.0\LibDBIcon-1.0.lua
 
 LootTable.lua
+
+MythicPlusLootTable.lua
+MythicPlusPopup.lua
+
 ToggleUI.lua
 Icon.lua
 OptionsPanel.lua
