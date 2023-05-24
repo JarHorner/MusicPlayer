@@ -1,110 +1,88 @@
 
 local iconVisible = true
 
--- local function getAnchors(frame)
--- 	local x, y = frame:GetCenter()
--- 	if not x or not y then return "CENTER" end
--- 	local hhalf = (x > UIParent:GetWidth()*2/3) and "RIGHT" or (x < UIParent:GetWidth()/3) and "LEFT" or ""
--- 	local vhalf = (y > UIParent:GetHeight()/2) and "TOP" or "BOTTOM"
--- 	return vhalf..hhalf, frame, (vhalf == "TOP" and "BOTTOM" or "TOP")..hhalf
--- end
+local function getAnchors(frame)
+	local x, y = frame:GetCenter()
+	if not x or not y then return "CENTER" end
+	local hhalf = (x > UIParent:GetWidth()*2/3) and "RIGHT" or (x < UIParent:GetWidth()/3) and "LEFT" or ""
+	local vhalf = (y > UIParent:GetHeight()/2) and "TOP" or "BOTTOM"
+	return vhalf..hhalf, frame, (vhalf == "TOP" and "BOTTOM" or "TOP")..hhalf
+end
 
--- local function onEnter(self)
--- 	if self.isMoving then return end
--- 	local obj = self.dataObject
--- 	if obj.OnTooltipShow then
--- 		GameTooltip:SetOwner(self, "ANCHOR_NONE")
--- 		GameTooltip:SetPoint(getAnchors(self))
--- 		obj.OnTooltipShow(GameTooltip)
--- 		GameTooltip:Show()
--- 	elseif obj.OnEnter then
--- 		obj.OnEnter(self)
--- 	end
--- end
+local onClick, onMouseUp, onMouseDown, onDragStart, onDragStop, updatePosition
 
--- local function onLeave(self)
--- 	local obj = self.dataObject
--- 	GameTooltip:Hide()
--- 	if obj.OnLeave then obj.OnLeave(self) end
--- end
+do
+	local minimapShapes = {
+		["ROUND"] = {true, true, true, true},
+		["SQUARE"] = {false, false, false, false},
+		["CORNER-TOPLEFT"] = {false, false, false, true},
+		["CORNER-TOPRIGHT"] = {false, false, true, false},
+		["CORNER-BOTTOMLEFT"] = {false, true, false, false},
+		["CORNER-BOTTOMRIGHT"] = {true, false, false, false},
+		["SIDE-LEFT"] = {false, true, false, true},
+		["SIDE-RIGHT"] = {true, false, true, false},
+		["SIDE-TOP"] = {false, false, true, true},
+		["SIDE-BOTTOM"] = {true, true, false, false},
+		["TRICORNER-TOPLEFT"] = {false, true, true, true},
+		["TRICORNER-TOPRIGHT"] = {true, false, true, true},
+		["TRICORNER-BOTTOMLEFT"] = {true, true, false, true},
+		["TRICORNER-BOTTOMRIGHT"] = {true, true, true, false},
+	}
 
--- local onClick, onMouseUp, onMouseDown, onDragStart, onDragStop, updatePosition
+	function updatePosition(button)
+		local angle = math.rad(button.db and button.db.minimapPos or button.minimapPos or 225)
+		local x, y, q = math.cos(angle), math.sin(angle), 1
+		if x < 0 then q = q + 1 end
+		if y > 0 then q = q + 2 end
+		local minimapShape = GetMinimapShape and GetMinimapShape() or "ROUND"
+		local quadTable = minimapShapes[minimapShape]
+		if quadTable[q] then
+			x, y = x*80, y*80
+		else
+			local diagRadius = 103.13708498985 --math.sqrt(2*(80)^2)-10
+			x = math.max(-80, math.min(x*diagRadius, 80))
+			y = math.max(-80, math.min(y*diagRadius, 80))
+		end
+		button:SetPoint("CENTER", Minimap, "CENTER", x, y)
+        print("I am in updatePosition")
+	end
+end
 
--- do
--- 	local minimapShapes = {
--- 		["ROUND"] = {true, true, true, true},
--- 		["SQUARE"] = {false, false, false, false},
--- 		["CORNER-TOPLEFT"] = {false, false, false, true},
--- 		["CORNER-TOPRIGHT"] = {false, false, true, false},
--- 		["CORNER-BOTTOMLEFT"] = {false, true, false, false},
--- 		["CORNER-BOTTOMRIGHT"] = {true, false, false, false},
--- 		["SIDE-LEFT"] = {false, true, false, true},
--- 		["SIDE-RIGHT"] = {true, false, true, false},
--- 		["SIDE-TOP"] = {false, false, true, true},
--- 		["SIDE-BOTTOM"] = {true, true, false, false},
--- 		["TRICORNER-TOPLEFT"] = {false, true, true, true},
--- 		["TRICORNER-TOPRIGHT"] = {true, false, true, true},
--- 		["TRICORNER-BOTTOMLEFT"] = {true, true, false, true},
--- 		["TRICORNER-BOTTOMRIGHT"] = {true, true, true, false},
--- 	}
+function onMouseDown(self) self.isMouseDown = true; self.icon:UpdateCoord() end
+function onMouseUp(self) self.isMouseDown = false; self.icon:UpdateCoord() end
 
--- 	function updatePosition(button)
--- 		local angle = math.rad(button.db and button.db.minimapPos or button.minimapPos or 225)
--- 		local x, y, q = math.cos(angle), math.sin(angle), 1
--- 		if x < 0 then q = q + 1 end
--- 		if y > 0 then q = q + 2 end
--- 		local minimapShape = GetMinimapShape and GetMinimapShape() or "ROUND"
--- 		local quadTable = minimapShapes[minimapShape]
--- 		if quadTable[q] then
--- 			x, y = x*80, y*80
--- 		else
--- 			local diagRadius = 103.13708498985 --math.sqrt(2*(80)^2)-10
--- 			x = math.max(-80, math.min(x*diagRadius, 80))
--- 			y = math.max(-80, math.min(y*diagRadius, 80))
--- 		end
--- 		button:SetPoint("CENTER", Minimap, "CENTER", x, y)
--- 	end
--- end
+do
+	local function onUpdate(self)
+		local mx, my = Minimap:GetCenter()
+		local px, py = GetCursorPosition()
+		local scale = Minimap:GetEffectiveScale()
+		px, py = px / scale, py / scale
+		self.minimapPos = math.deg(math.atan2(py - my, px - mx)) % 360
+		updatePosition(self)
+	end
 
--- function onClick(self, b) if self.dataObject.OnClick then self.dataObject.OnClick(self, b) end end
--- function onMouseDown(self) self.isMouseDown = true; self.icon:UpdateCoord() end
--- function onMouseUp(self) self.isMouseDown = false; self.icon:UpdateCoord() end
+	function onDragStart(self)
+		self:LockHighlight()
+		self.isMouseDown = true
+		self.icon:UpdateCoord()
+		self:SetScript("OnUpdate", onUpdate)
+		self.isMoving = true
+		GameTooltip:Hide()
+	end
+end
 
--- do
--- 	local function onUpdate(self)
--- 		local mx, my = Minimap:GetCenter()
--- 		local px, py = GetCursorPosition()
--- 		local scale = Minimap:GetEffectiveScale()
--- 		px, py = px / scale, py / scale
--- 		if self.db then
--- 			self.db.minimapPos = math.deg(math.atan2(py - my, px - mx)) % 360
--- 		else
--- 			self.minimapPos = math.deg(math.atan2(py - my, px - mx)) % 360
--- 		end
--- 		updatePosition(self)
--- 	end
-
--- 	function onDragStart(self)
--- 		self:LockHighlight()
--- 		self.isMouseDown = true
--- 		self.icon:UpdateCoord()
--- 		self:SetScript("OnUpdate", onUpdate)
--- 		self.isMoving = true
--- 		GameTooltip:Hide()
--- 	end
--- end
-
--- function onDragStop(self)
--- 	self:SetScript("OnUpdate", nil)
--- 	self.isMouseDown = false
--- 	self.icon:UpdateCoord()
--- 	self:UnlockHighlight()
--- 	self.isMoving = nil
--- end
+function onDragStop(self)
+	self:SetScript("OnUpdate", nil)
+	self.isMouseDown = false
+	self.icon:UpdateCoord()
+	self:UnlockHighlight()
+	self.isMoving = nil
+end
 
 local defaultCoords = {0, 1, 0, 1}
 local function updateCoord(self)
 	local coords = defaultCoords
+    print(coords)
 	local deltaX, deltaY = 0, 0
 	if not self:GetParent().isMouseDown then
 		deltaX = (coords[2] - coords[1]) * 0.05
@@ -136,22 +114,16 @@ icon:SetPoint("CENTER", button, "CENTER", 1, -1)
 button.icon = icon
 button.isMouseDown = false
 
+print("Should get here")
+
 icon.UpdateCoord = updateCoord
 icon:UpdateCoord()
 
-print("Should get here")
+button:SetScript("OnDragStart", onDragStart)
+button:SetScript("OnDragStop", onDragStop)
 
--- button:SetScript("OnEnter", onEnter)
--- button:SetScript("OnLeave", onLeave)
--- button:SetScript("OnClick", onClick)
-
--- button:SetScript("OnDragStart", onDragStart)
--- button:SetScript("OnDragStop", onDragStop)
-
--- button:SetScript("OnMouseDown", onMouseDown)
--- button:SetScript("OnMouseUp", onMouseUp)
-
-
+button:SetScript("OnMouseDown", onMouseDown)
+button:SetScript("OnMouseUp", onMouseUp)
 
 local function ToggleIcon()
     print("Toggling")
@@ -176,26 +148,26 @@ button:SetScript("OnClick", function(self, button, down)
     end
 end)
 
--- Allows the icon to be dragged along the minimap
-button:SetScript("OnDragStart", function(self, button)
-    self:StartMoving()
+-- -- Allows the icon to be dragged along the minimap
+-- button:SetScript("OnDragStart", function(self, button)
+--     self:StartMoving()
 
-end)
-button:SetScript("OnDragStop", function(self)
-    self:StopMovingOrSizing()
+-- end)
+-- button:SetScript("OnDragStop", function(self)
+--     self:StopMovingOrSizing()
 
-    local posX, posY = self:GetCenter()
-    local mapPosX, mapPosY = Minimap:GetCenter()
-    local scale = Minimap:GetEffectiveScale()
-    local radius = (Minimap:GetWidth()/2) + 6
-    local deltaX, deltaY = posX - mapPosX, posY - mapPosY
-    local distance = math.sqrt(deltaX^2 + deltaY^2)
-    if distance < radius then -- only reposition the button if it's within the minimap circle
-        local angle = math.atan2(deltaY, deltaX)
-        self:ClearAllPoints()
-        self:SetPoint("CENTER", Minimap, "CENTER", math.cos(angle)*radius, math.sin(angle)*radius)
-    end
-end)
+--     local posX, posY = self:GetCenter()
+--     local mapPosX, mapPosY = Minimap:GetCenter()
+--     local scale = Minimap:GetEffectiveScale()
+--     local radius = (Minimap:GetWidth()/2) + 6
+--     local deltaX, deltaY = posX - mapPosX, posY - mapPosY
+--     local distance = math.sqrt(deltaX^2 + deltaY^2)
+--     if distance < radius then -- only reposition the button if it's within the minimap circle
+--         local angle = math.atan2(deltaY, deltaX)
+--         self:ClearAllPoints()
+--         self:SetPoint("CENTER", Minimap, "CENTER", math.cos(angle)*radius, math.sin(angle)*radius)
+--     end
+-- end)
 
 -- Set up the tooltip text
 button.tooltipTitle = "Mythic Plus Loot Table"
@@ -210,6 +182,7 @@ button:SetScript("OnEnter", function(self)
     GameTooltip:AddLine(self.tooltipText2)
     GameTooltip:Show()
 end)
+
 button:SetScript("OnLeave", function(self)
     GameTooltip:Hide()
 end)
