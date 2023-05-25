@@ -44,7 +44,7 @@ do
 			y = math.max(-80, math.min(y*diagRadius, 80))
 		end
 		button:SetPoint("CENTER", Minimap, "CENTER", x, y)
-        print("I am in updatePosition")
+        print("X= " .. x .. " Y= " .. y)
 	end
 end
 
@@ -82,7 +82,6 @@ end
 local defaultCoords = {0, 1, 0, 1}
 local function updateCoord(self)
 	local coords = defaultCoords
-    print(coords)
 	local deltaX, deltaY = 0, 0
 	if not self:GetParent().isMouseDown then
 		deltaX = (coords[2] - coords[1]) * 0.05
@@ -98,7 +97,7 @@ button:SetFrameLevel(8)
 button:RegisterForClicks("anyUp")
 button:RegisterForDrag("LeftButton")
 button:SetHighlightTexture("Interface\\Minimap\\UI-Minimap-ZoomButton-Highlight")
-button:SetPoint("BOTTOMRIGHT", Minimap, "BOTTOMRIGHT", 0, 0)
+--button:SetPoint("CENTER", Minimap, "CENTER", -105, 0)
 local overlay = button:CreateTexture(nil, "OVERLAY")
 overlay:SetSize(53, 53)
 overlay:SetTexture("Interface\\Minimap\\MiniMap-TrackingBorder")
@@ -106,13 +105,15 @@ overlay:SetPoint("TOPLEFT")
 local background = button:CreateTexture(nil, "BACKGROUND")
 background:SetSize(20, 20)
 background:SetTexture("Interface\\Minimap\\UI-Minimap-Background")
-background:SetPoint("CENTER", 0, 0)
+background:SetPoint("TOPLEFT", 7, -5)
 local icon = button:CreateTexture(nil, "ARTWORK")
 icon:SetSize(20, 20)
 icon:SetTexture("Interface\\AddOns\\MythicPlusLootTable\\Circle_Icon_Hourglass.tga")
-icon:SetPoint("CENTER", button, "CENTER", 1, -1)
+icon:SetPoint("TOPLEFT", 7, -6)
 button.icon = icon
 button.isMouseDown = false
+
+updatePosition(button)
 
 print("Should get here")
 
@@ -147,27 +148,6 @@ button:SetScript("OnClick", function(self, button, down)
         print("right click")
     end
 end)
-
--- -- Allows the icon to be dragged along the minimap
--- button:SetScript("OnDragStart", function(self, button)
---     self:StartMoving()
-
--- end)
--- button:SetScript("OnDragStop", function(self)
---     self:StopMovingOrSizing()
-
---     local posX, posY = self:GetCenter()
---     local mapPosX, mapPosY = Minimap:GetCenter()
---     local scale = Minimap:GetEffectiveScale()
---     local radius = (Minimap:GetWidth()/2) + 6
---     local deltaX, deltaY = posX - mapPosX, posY - mapPosY
---     local distance = math.sqrt(deltaX^2 + deltaY^2)
---     if distance < radius then -- only reposition the button if it's within the minimap circle
---         local angle = math.atan2(deltaY, deltaX)
---         self:ClearAllPoints()
---         self:SetPoint("CENTER", Minimap, "CENTER", math.cos(angle)*radius, math.sin(angle)*radius)
---     end
--- end)
 
 -- Set up the tooltip text
 button.tooltipTitle = "Mythic Plus Loot Table"
