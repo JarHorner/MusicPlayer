@@ -1,6 +1,4 @@
 
-local iconVisible = true
-
 local function getAnchors(frame)
 	local x, y = frame:GetCenter()
 	if not x or not y then return "CENTER" end
@@ -37,14 +35,14 @@ do
 		local minimapShape = GetMinimapShape and GetMinimapShape() or "ROUND"
 		local quadTable = minimapShapes[minimapShape]
 		if quadTable[q] then
-			x, y = x*80, y*80
+			-- This affects where along the minimap the icon is placed
+			x, y = x*105, y*105
 		else
 			local diagRadius = 103.13708498985 --math.sqrt(2*(80)^2)-10
 			x = math.max(-80, math.min(x*diagRadius, 80))
 			y = math.max(-80, math.min(y*diagRadius, 80))
 		end
 		button:SetPoint("CENTER", Minimap, "CENTER", x, y)
-        print("X= " .. x .. " Y= " .. y)
 	end
 end
 
@@ -90,72 +88,58 @@ local function updateCoord(self)
 	self:SetTexCoord(coords[1] + deltaX, coords[2] - deltaX, coords[3] + deltaY, coords[4] - deltaY)
 end
 
-local button = CreateFrame("Button", "MythicPlusLootTableIcon", Minimap)
-button:SetFrameStrata("MEDIUM")
-button:SetSize(31, 31)
-button:SetFrameLevel(8)
-button:RegisterForClicks("anyUp")
-button:RegisterForDrag("LeftButton")
-button:SetHighlightTexture("Interface\\Minimap\\UI-Minimap-ZoomButton-Highlight")
---button:SetPoint("CENTER", Minimap, "CENTER", -105, 0)
-local overlay = button:CreateTexture(nil, "OVERLAY")
+lootTableIcon = CreateFrame("Button", "MythicPlusLootTableIcon", Minimap)
+lootTableIcon:SetFrameStrata("MEDIUM")
+lootTableIcon:SetSize(31, 31)
+lootTableIcon:SetFrameLevel(8)
+lootTableIcon:RegisterForClicks("anyUp")
+lootTableIcon:RegisterForDrag("LeftButton")
+lootTableIcon:SetHighlightTexture("Interface\\Minimap\\UI-Minimap-ZoomButton-Highlight")
+local overlay = lootTableIcon:CreateTexture(nil, "OVERLAY")
 overlay:SetSize(53, 53)
 overlay:SetTexture("Interface\\Minimap\\MiniMap-TrackingBorder")
 overlay:SetPoint("TOPLEFT")
-local background = button:CreateTexture(nil, "BACKGROUND")
+local background = lootTableIcon:CreateTexture(nil, "BACKGROUND")
 background:SetSize(20, 20)
 background:SetTexture("Interface\\Minimap\\UI-Minimap-Background")
 background:SetPoint("TOPLEFT", 7, -5)
-local icon = button:CreateTexture(nil, "ARTWORK")
+local icon = lootTableIcon:CreateTexture(nil, "ARTWORK")
 icon:SetSize(20, 20)
 icon:SetTexture("Interface\\AddOns\\MythicPlusLootTable\\Circle_Icon_Hourglass.tga")
 icon:SetPoint("TOPLEFT", 7, -6)
-button.icon = icon
-button.isMouseDown = false
+lootTableIcon.icon = icon
+lootTableIcon.isMouseDown = false
 
-updatePosition(button)
-
-print("Should get here")
+updatePosition(lootTableIcon)
 
 icon.UpdateCoord = updateCoord
 icon:UpdateCoord()
 
-button:SetScript("OnDragStart", onDragStart)
-button:SetScript("OnDragStop", onDragStop)
+lootTableIcon:SetScript("OnDragStart", onDragStart)
+lootTableIcon:SetScript("OnDragStop", onDragStop)
 
-button:SetScript("OnMouseDown", onMouseDown)
-button:SetScript("OnMouseUp", onMouseUp)
+lootTableIcon:SetScript("OnMouseDown", onMouseDown)
+lootTableIcon:SetScript("OnMouseUp", onMouseUp)
 
-local function ToggleIcon()
-    print("Toggling")
-    if iconVisible then
-        button:Hide()
-        iconVisible = false
-    else
-        button:Show()
-        iconVisible = true
-    end
-end
 
 -- Sets up the OnClick script handler that ether toggles table or hides icon
-button:SetScript("OnClick", function(self, button, down)
+lootTableIcon:SetScript("OnClick", function(self, button, down)
     if button == "LeftButton" then
         -- Do something when the left mouse button is clicked
         ToggleLootTable()
     elseif button == "RightButton" then
         -- Do something when the right mouse button is clicked
-        -- ToggleIcon()
-        print("right click")
+		ToggleLootTableMenu()
     end
 end)
 
 -- Set up the tooltip text
-button.tooltipTitle = "Mythic Plus Loot Table"
-button.tooltipText1 = "Left Click: Toggle Table Window"
-button.tooltipText2 = "Right Click: Hide Minimap Icon"
+lootTableIcon.tooltipTitle = "Mythic Plus Loot Table"
+lootTableIcon.tooltipText1 = "Left Click: Toggle Table Window"
+lootTableIcon.tooltipText2 = "Right Click: Open Options Menu"
 
 -- Sets up the OnEnter and OnLeave script handlers that shows the tooltip
-button:SetScript("OnEnter", function(self)
+lootTableIcon:SetScript("OnEnter", function(self)
     GameTooltip:SetOwner(self, "ANCHOR_BOTTOMLEFT")
     GameTooltip:AddLine(self.tooltipTitle, 1, 1, 1)
     GameTooltip:AddLine(self.tooltipText1)
@@ -163,6 +147,6 @@ button:SetScript("OnEnter", function(self)
     GameTooltip:Show()
 end)
 
-button:SetScript("OnLeave", function(self)
+lootTableIcon:SetScript("OnLeave", function(self)
     GameTooltip:Hide()
 end)

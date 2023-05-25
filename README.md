@@ -1,0 +1,1 @@
+This is a simple World of Warcraft addon that shows a table of each level of mythic plus dungeons, with the loot it will drops at the end and what you will get for your weekly for completing the dungeon.

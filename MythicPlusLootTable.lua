@@ -1,25 +1,27 @@
+local addonData = {
+    iconHidden = false,
+    xPos = 10,
+    yPos = 10,
 
-SLASH_CHECKLOOT1 = "/lt"
-SLASH_TEST1 = "/test"
+    -- Add more variables as needed
+}
 
-local function checkLootHandler()
-    ToggleLootTable()
-end
+local frame = CreateFrame("Frame")
 
-local function testing()
-    local isMythicPlusActive = C_MythicPlus.IsMythicPlusActive()
-    if (isMythicPlusActive) then
-        print("In M+")
-    else
-        print("Not M+")
+frame:RegisterEvent("ADDON_LOADED")
+frame:SetScript("OnEvent", function(self, event, addon)
+    print("grabbing addon info " .. addon)
+    if addon == "MythicPlusLootTable" then
+        MythicPlusLootTableData = MythicPlusLootTableData or addonData
     end
-    local challengeModeActive = C_ChallengeMode.IsChallengeModeActive()
-    if (challengeModeActive) then
-        print("In challenge")
-    else
-        print("Not challenge")
-    end
-end
+end)
 
-SlashCmdList["CHECKLOOT"] = checkLootHandler
-SlashCmdList["TEST"] = testing
+frame:RegisterEvent("PLAYER_LOGOUT")
+frame:SetScript("OnEvent", function(self, event)
+    if event == "PLAYER_LOGOUT" then
+        MythicPlusLootTableData = addonData
+    end
+end)
+
+print("Should get here")
+print(MythicPlusLootTableData.xPos)

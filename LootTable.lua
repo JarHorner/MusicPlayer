@@ -1,8 +1,5 @@
-
-
-
 -- Creation of loot table that displays all loot information
-function CreateLootTable()
+local function CreateLootTable()
     local myFrame = CreateFrame("Frame", "MyFrame", UIParent, "BackdropTemplate")
 
     myFrame:SetPoint("LEFT", UIParent, "LEFT")
@@ -60,3 +57,4 @@ function CreateLootTable()
     return myFrame
 end
 
+lootTable = CreateLootTable()
