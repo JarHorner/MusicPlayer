@@ -1,3 +1,19 @@
+
+local keyLevels = { 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20}
+
+local function getKeyLevelLoot()
+    local lootTable = {}
+    for i = 2, 20, 1 do
+        lootTable[i] = {}
+        local weeklyRewardLevel, endOfRunRewardLevel = C_MythicPlus.GetRewardLevelForDifficultyLevel(i)
+        lootTable[i][1] = weeklyRewardLevel
+        lootTable[i][2] = endOfRunRewardLevel
+    end
+    return lootTable
+end
+
+local keyLevelLoot = getKeyLevelLoot()
+
 -- Creation of loot table that displays all loot information
 local function CreateLootTable()
     local myFrame = CreateFrame("Frame", "MyFrame", UIParent, "BackdropTemplate")
@@ -30,7 +46,6 @@ local function CreateLootTable()
         cell:SetBackdrop(BACKDROP_TUTORIAL_16_16)
         cell:SetPoint("TOP", myFrame, "TOP", 0, padding)
 
-        local weeklyRewardLevel, endOfRunRewardLevel = C_MythicPlus.GetRewardLevelForDifficultyLevel(i)
         local keyLevel = cell:CreateFontString(nil, "OVERLAY", "GameFontNormal")
         keyLevel:SetPoint("LEFT", cell, "LEFT", 15, 0)
         keyLevel:SetText("Level: " .. i)
@@ -38,11 +53,11 @@ local function CreateLootTable()
 
         local completion = cell:CreateFontString(nil, "OVERLAY", "GameFontNormal")
         completion:SetPoint("CENTER", cell, "CENTER")
-        completion:SetText("Completion: " .. endOfRunRewardLevel)
+        completion:SetText("Completion: " .. keyLevelLoot[i][2])
 
         local weekly = cell:CreateFontString(nil, "OVERLAY", "GameFontNormal")
         weekly:SetPoint("RIGHT", cell, "RIGHT", -15, 0)
-        weekly:SetText("Weekly: " .. weeklyRewardLevel)
+        weekly:SetText("Weekly: " .. keyLevelLoot[i][1])
 
         padding = padding + -25
     end
