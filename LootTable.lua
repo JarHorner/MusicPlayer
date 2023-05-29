@@ -1,13 +1,34 @@
 
-local keyLevels = { 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20}
+-- local lootTable = {
+--     {0, 0},
+--     {402, 415},
+--     {405, 418},
+--     {405, 421},
+--     {408, 421},
+--     {408, 424},
+--     {411, 424},
+--     {411, 428},
+--     {415, 428},
+--     {415, 431},
+--     {418, 431},
+--     {418, 434},
+--     {421, 434},
+--     {421, 437},
+--     {424, 437},
+--     {424, 441},
+--     {428, 441},
+--     {428, 444},
+--     {431, 444},
+--     {431, 447}
+-- }
 
 local function getKeyLevelLoot()
     local lootTable = {}
-    for i = 2, 20, 1 do
+    for i = 1, 20, 1 do
         lootTable[i] = {}
         local weeklyRewardLevel, endOfRunRewardLevel = C_MythicPlus.GetRewardLevelForDifficultyLevel(i)
-        lootTable[i][1] = weeklyRewardLevel
-        lootTable[i][2] = endOfRunRewardLevel
+        lootTable[i][1] = endOfRunRewardLevel
+        lootTable[i][2] = weeklyRewardLevel
     end
     return lootTable
 end
@@ -53,15 +74,15 @@ local function CreateLootTable()
 
         local completion = cell:CreateFontString(nil, "OVERLAY", "GameFontNormal")
         completion:SetPoint("CENTER", cell, "CENTER")
-        completion:SetText("Completion: " .. keyLevelLoot[i][2])
+        completion:SetText("Completion: " .. keyLevelLoot[i][1])
 
         local weekly = cell:CreateFontString(nil, "OVERLAY", "GameFontNormal")
         weekly:SetPoint("RIGHT", cell, "RIGHT", -15, 0)
-        weekly:SetText("Weekly: " .. keyLevelLoot[i][1])
+        weekly:SetText("Weekly: " .. keyLevelLoot[i][2])
 
         padding = padding + -25
     end
-
+    print("Got here")
     myFrame:SetScript("OnDragStart", function(self, button)
         self:StartMoving()
     end)
