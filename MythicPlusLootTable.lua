@@ -2,8 +2,6 @@ local addonData = {
     iconHidden = false,
     xPos = 10,
     yPos = 10,
-
-    -- Add more variables as needed
 }
 
 local frame = CreateFrame("Frame")
@@ -23,5 +21,3 @@ frame:SetScript("OnEvent", function(self, event)
     end
 end)
 
-print("Should get here")
-print(MythicPlusLootTableData.xPos)

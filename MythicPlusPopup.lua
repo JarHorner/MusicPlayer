@@ -1,8 +1,9 @@
 
-local challengeModeActive = C_ChallengeMode.IsChallengeModeActive()
 
-if (challengeModeActive) then
+local frame = CreateFrame("Frame")
 
+
+local function ShowKeyLevelLoot()
     local activeKeystoneLevel = C_ChallengeMode.GetActiveKeystoneInfo()
     local weeklyRewardLevel, endOfRunRewardLevel = C_MythicPlus.GetRewardLevelForDifficultyLevel(activeKeystoneLevel)
 
@@ -16,3 +17,12 @@ if (challengeModeActive) then
     
     StaticPopup_Show("KEY_STARTED", activeKeystoneLevel)
 end
+
+local function OnEvent(self, event, ...)
+	print(event, ...)
+    
+	ShowKeyLevelLoot()
+end
+
+frame:RegisterEvent("CHALLENGE_MODE_START")
+frame:SetScript("OnEvent", OnEvent)

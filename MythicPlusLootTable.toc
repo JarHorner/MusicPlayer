@@ -8,10 +8,7 @@ MythicPlusLootTable.lua
 
 LootTable.lua
 
-# These are a WiP
-Commands.lua
 MythicPlusPopup.lua
-#
 
 ToggleUI.lua
 ToggleOptionsMenu.lua

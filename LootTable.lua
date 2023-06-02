@@ -1,26 +1,5 @@
 
--- local lootTable = {
---     {0, 0},
---     {402, 415},
---     {405, 418},
---     {405, 421},
---     {408, 421},
---     {408, 424},
---     {411, 424},
---     {411, 428},
---     {415, 428},
---     {415, 431},
---     {418, 431},
---     {418, 434},
---     {421, 434},
---     {421, 437},
---     {424, 437},
---     {424, 441},
---     {428, 441},
---     {428, 444},
---     {431, 444},
---     {431, 447}
--- }
+local keyLevelLoot = {}
 
 local function getKeyLevelLoot()
     local lootTable = {}
@@ -32,8 +11,6 @@ local function getKeyLevelLoot()
     end
     return lootTable
 end
-
-local keyLevelLoot = getKeyLevelLoot()
 
 -- Creation of loot table that displays all loot information
 local function CreateLootTable()
@@ -90,7 +67,19 @@ local function CreateLootTable()
         self:StopMovingOrSizing()
     end)
     tinsert(UISpecialFrames, "MyFrame")
+
     return myFrame
 end
 
-lootTable = CreateLootTable()
+local f = CreateFrame("Frame")
+
+local function OnEvent(self, event, ...)
+	print(event, ...)
+	keyLevelLoot = getKeyLevelLoot()
+    lootTable = CreateLootTable()
+
+    f:UnregisterEvent("PLAYER_LOGIN")
+end
+
+f:RegisterEvent("PLAYER_LOGIN")
+f:SetScript("OnEvent", OnEvent)

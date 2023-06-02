@@ -6,7 +6,6 @@ function ToggleLootTable()
         frameVisible = false
     end
 
-    print("Toggling")
     if frameVisible then
         lootTable:Hide()
         frameVisible = false
