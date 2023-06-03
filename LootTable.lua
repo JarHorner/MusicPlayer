@@ -1,16 +1,38 @@
 
-local keyLevelLoot = {}
+local lootTableData = {
+    {0, 0},
+    {402, 415},
+    {405, 418},
+    {405, 421},
+    {408, 421},
+    {408, 424},
+    {411, 424},
+    {411, 428},
+    {415, 428},
+    {415, 431},
+    {418, 431},
+    {418, 434},
+    {421, 434},
+    {421, 437},
+    {424, 437},
+    {424, 441},
+    {428, 441},
+    {428, 444},
+    {431, 444},
+    {431, 447}
+}
 
-local function getKeyLevelLoot()
-    local lootTable = {}
-    for i = 1, 20, 1 do
-        lootTable[i] = {}
-        local weeklyRewardLevel, endOfRunRewardLevel = C_MythicPlus.GetRewardLevelForDifficultyLevel(i)
-        lootTable[i][1] = endOfRunRewardLevel
-        lootTable[i][2] = weeklyRewardLevel
-    end
-    return lootTable
-end
+-- local function getKeyLevelLoot()
+--     local lootTable = {}
+--     for i = 1, 20, 1 do
+--         lootTable[i] = {}
+--         local weeklyRewardLevel, endOfRunRewardLevel = C_MythicPlus.GetRewardLevelForDifficultyLevel(i)
+--         lootTable[i][1] = endOfRunRewardLevel
+--         lootTable[i][2] = weeklyRewardLevel
+--         print("end run: " .. lootTable[i][1] .. "  weekly: " .. lootTable[i][2])
+--     end
+--     return lootTable
+-- end
 
 -- Creation of loot table that displays all loot information
 local function CreateLootTable()
@@ -51,15 +73,14 @@ local function CreateLootTable()
 
         local completion = cell:CreateFontString(nil, "OVERLAY", "GameFontNormal")
         completion:SetPoint("CENTER", cell, "CENTER")
-        completion:SetText("Completion: " .. keyLevelLoot[i][1])
+        completion:SetText("Completion: " .. lootTableData[i][1])
 
         local weekly = cell:CreateFontString(nil, "OVERLAY", "GameFontNormal")
         weekly:SetPoint("RIGHT", cell, "RIGHT", -15, 0)
-        weekly:SetText("Weekly: " .. keyLevelLoot[i][2])
+        weekly:SetText("Weekly: " .. lootTableData[i][2])
 
         padding = padding + -25
     end
-    print("Got here")
     myFrame:SetScript("OnDragStart", function(self, button)
         self:StartMoving()
     end)
@@ -74,8 +95,7 @@ end
 local f = CreateFrame("Frame")
 
 local function OnEvent(self, event, ...)
-	print(event, ...)
-	keyLevelLoot = getKeyLevelLoot()
+	-- keyLevelLoot = getKeyLevelLoot()
     lootTable = CreateLootTable()
 
     f:UnregisterEvent("PLAYER_LOGIN")

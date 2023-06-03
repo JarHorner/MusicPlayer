@@ -4,6 +4,8 @@
 ## Author: Jarret Horner
 ## Version: 0.0.1
 
+##SavedVariables: SavedVariables
+
 MythicPlusLootTable.lua
 
 LootTable.lua

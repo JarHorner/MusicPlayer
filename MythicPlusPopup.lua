@@ -10,7 +10,7 @@ local function ShowKeyLevelLoot()
     StaticPopupDialogs["KEY_STARTED"] = {
         text = "Completion will give " .. endOfRunRewardLevel .. " ilvl end of run, " .. weeklyRewardLevel .. " weekly" ,
         button1 = "Ok",
-        timeout = 10,
+        timeout = 5,
         whileDead = true,
         hideOnEscape = true,
     }
