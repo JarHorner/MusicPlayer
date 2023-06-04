@@ -4,10 +4,9 @@ local addonData = {
     yPos = -74.246212024587,
 }
 
--- Event handler for ADDON_LOADED
+-- Event handler thats triggers when the addon has finished loading and based on the SavedVariables, changes values
 local function OnAddonLoaded(self, event, addonName)
     if addonName == "MythicPlusLootTable" then
-        print('This addon exists')
 
         -- Check if SavedVariables exist, if it does not, the default data will be saved
         SavedVariables = SavedVariables or addonData
@@ -29,7 +28,7 @@ local function OnAddonLoaded(self, event, addonName)
     end
 end
 
--- Register the ADDON_LOADED event
+-- Registering the ADDON_LOADED event
 local frame = CreateFrame("Frame")
 frame:RegisterEvent("ADDON_LOADED")
 frame:SetScript("OnEvent", OnAddonLoaded)

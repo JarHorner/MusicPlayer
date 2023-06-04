@@ -14,7 +14,7 @@ toggleCheckbox = CreateFrame("CheckButton", "MyAddonToggleCheckbox", optionsPane
 toggleCheckbox:SetPoint("TOPLEFT", 14, -40) -- Adjust the position as desired
 toggleCheckbox.Text:SetText("Hide Minimap Icon") -- The label text displayed next to the checkbox
 
-
+-- toggles the minimap icon on/off
 local function ToggleOption(checkbox)
     local isChecked = checkbox:GetChecked()
 
@@ -29,6 +29,7 @@ local function ToggleOption(checkbox)
     end
 end
 
+-- sets up the script on the checkbox that shows/hides the icon
 toggleCheckbox:SetScript("OnClick", function(self)
     ToggleOption(self)
 end)

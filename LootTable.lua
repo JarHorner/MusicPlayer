@@ -1,4 +1,5 @@
 
+-- a hard-coded loot table data because the API call to get these values does not when loading addon
 local lootTableData = {
     {0, 0},
     {402, 415},
@@ -21,18 +22,6 @@ local lootTableData = {
     {431, 444},
     {431, 447}
 }
-
--- local function getKeyLevelLoot()
---     local lootTable = {}
---     for i = 1, 20, 1 do
---         lootTable[i] = {}
---         local weeklyRewardLevel, endOfRunRewardLevel = C_MythicPlus.GetRewardLevelForDifficultyLevel(i)
---         lootTable[i][1] = endOfRunRewardLevel
---         lootTable[i][2] = weeklyRewardLevel
---         print("end run: " .. lootTable[i][1] .. "  weekly: " .. lootTable[i][2])
---     end
---     return lootTable
--- end
 
 -- Creation of loot table that displays all loot information
 local function CreateLootTable()
@@ -58,6 +47,7 @@ local function CreateLootTable()
         ToggleLootTable()
     end)
 
+    -- creates and fills the information of the table
     local padding = -32
     for i = 2, 20, 1 do
 
@@ -81,6 +71,8 @@ local function CreateLootTable()
 
         padding = padding + -25
     end
+
+    -- setting scripts to the main frame
     myFrame:SetScript("OnDragStart", function(self, button)
         self:StartMoving()
     end)
@@ -94,12 +86,13 @@ end
 
 local f = CreateFrame("Frame")
 
+-- event creates the loot table
 local function OnEvent(self, event, ...)
-	-- keyLevelLoot = getKeyLevelLoot()
     lootTable = CreateLootTable()
 
     f:UnregisterEvent("PLAYER_LOGIN")
 end
 
+-- Registering the PLAYER_LOGIN event
 f:RegisterEvent("PLAYER_LOGIN")
 f:SetScript("OnEvent", OnEvent)

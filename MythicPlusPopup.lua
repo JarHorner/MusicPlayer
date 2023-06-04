@@ -1,8 +1,8 @@
 
 
-local frame = CreateFrame("Frame")
+local popup = CreateFrame("Frame")
 
-
+-- Shows a popup when a key begins showing the different loot you will receive from it
 local function ShowKeyLevelLoot()
     local activeKeystoneLevel = C_ChallengeMode.GetActiveKeystoneInfo()
     local weeklyRewardLevel, endOfRunRewardLevel = C_MythicPlus.GetRewardLevelForDifficultyLevel(activeKeystoneLevel)
@@ -18,11 +18,13 @@ local function ShowKeyLevelLoot()
     StaticPopup_Show("KEY_STARTED", activeKeystoneLevel)
 end
 
+-- the event that creates the popup
 local function OnEvent(self, event, ...)
 	print(event, ...)
     
 	ShowKeyLevelLoot()
 end
 
-frame:RegisterEvent("CHALLENGE_MODE_START")
-frame:SetScript("OnEvent", OnEvent)
+-- the registered event is triggered upon starting a key
+popup:RegisterEvent("CHALLENGE_MODE_START")
+popup:SetScript("OnEvent", OnEvent)

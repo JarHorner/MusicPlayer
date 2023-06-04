@@ -6,7 +6,7 @@
 
 ##SavedVariables: SavedVariables
 
-MythicPlusLootTable.lua
+MythicPlusLootTableData.lua
 
 LootTable.lua
 
@@ -18,3 +18,5 @@ ToggleOptionsMenu.lua
 Icon.lua
 
 OptionsPanel.lua
+
+Commands.lua
