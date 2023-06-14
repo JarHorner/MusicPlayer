@@ -42,6 +42,9 @@ do
 			x = math.max(-80, math.min(x*diagRadius, 80))
 			y = math.max(-80, math.min(y*diagRadius, 80))
 		end
+		SavedVariables.xPos = x
+		SavedVariables.yPos = y
+		print("x: " .. x .. " y: " .. y)
 		button:SetPoint("CENTER", Minimap, "CENTER", x, y)
 	end
 end

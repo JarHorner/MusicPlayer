@@ -1,6 +1,7 @@
 
 
 local popup = CreateFrame("Frame")
+local popupTime = SavedVariables.popupTime
 
 -- Shows a popup when a key begins showing the different loot you will receive from it
 local function ShowKeyLevelLoot()
@@ -10,7 +11,7 @@ local function ShowKeyLevelLoot()
     StaticPopupDialogs["KEY_STARTED"] = {
         text = "Completion will give " .. endOfRunRewardLevel .. " ilvl end of run, " .. weeklyRewardLevel .. " weekly" ,
         button1 = "Ok",
-        timeout = 5,
+        timeout = popupTime,
         whileDead = true,
         hideOnEscape = true,
     }
