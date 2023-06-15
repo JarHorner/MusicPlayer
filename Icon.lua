@@ -44,7 +44,6 @@ do
 		end
 		SavedVariables.xPos = x
 		SavedVariables.yPos = y
-		print("x: " .. x .. " y: " .. y)
 		button:SetPoint("CENTER", Minimap, "CENTER", x, y)
 	end
 end

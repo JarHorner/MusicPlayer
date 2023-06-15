@@ -23,9 +23,7 @@ local function OnAddonLoaded(self, event, addonName)
         -- ensures the checkbox is properly shown based on iconHidden value
         toggleCheckbox:SetChecked(SavedVariables.iconHidden)
 
-        -- lootTableIcon:SetPoint("CENTER", Minimap, "CENTER", SavedVariables.xPos, SavedVariables.yPos)
-        print(SavedVariables.xPos .. " " .. SavedVariables.yPos)
-
+        -- sets the icon to the saved point around the minimap
         lootTableIcon:SetPoint("CENTER", Minimap, "CENTER", SavedVariables.xPos, SavedVariables.yPos)
 
         -- Unregister the event
