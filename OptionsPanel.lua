@@ -31,7 +31,7 @@ local sliderLow = _G[popupTimer:GetName() .. "Low"]
 local sliderHigh = _G[popupTimer:GetName() .. "High"]
 
 popupTimer.Text:SetText("M+ Loot Popup Time")
-popupTimer.Low:SetText("2")
+popupTimer.Low:SetText("0")
 popupTimer.High:SetText("10")
 
 -- Set up the slider's value change callback

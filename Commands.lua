@@ -1,5 +1,6 @@
 
 SLASH_OPENTABLE1 = "/showlt"
+SLASH_OPENSETTINGS1 = "/ltsettings"
 
 -- the command function that toggles the loot table
 local function OpenKeyLevelLoot()
@@ -7,6 +8,7 @@ local function OpenKeyLevelLoot()
 end
 
 SlashCmdList["OPENTABLE"] = OpenKeyLevelLoot
+SlashCmdList["OPENSETTINGS"] = ToggleLootTableMenu
 
 local chatFrame = DEFAULT_CHAT_FRAME
 
