@@ -29,7 +29,9 @@ Special tools to help with understanding the World of Warcraft API:
 
 ### Installation
 
-_There is 1 way you can install this addon and use it, when I feel like the addon is ready, it will be available on CurseForge with almost all other addons. The link will be put here when available_
+_There are 2 ways you can install this addon and use it, it is available on CurseForge with almost all other addons, or you can clone the repo and place the folder in the addons folder_
+
+You can find it at CurseForge [here](https://www.curseforge.com/wow/addons/mythicplusloottable).
 
 1. Clone the repo or download it as a zip file
    ```sh
