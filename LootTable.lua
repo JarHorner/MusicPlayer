@@ -108,9 +108,3 @@ end
 -- Registering the PLAYER_LOGIN event
 f:RegisterEvent("PLAYER_LOGIN")
 f:SetScript("OnEvent", OnEvent)
-
-
-function ResetTablePosition()
-
-    lootTable:SetPoint("LEFT", SavedVariables.tableRelativeTo, "LEFT", 0, 0)
-end
