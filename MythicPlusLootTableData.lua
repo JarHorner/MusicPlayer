@@ -4,7 +4,6 @@ local addonData = {
     yPos = -74.246212024587,
     popupTime = 5,
     tablePoint = "LEFT",
-    tableRelativeTo = UIParent,
     tableRelativePoint = "LEFT",
     tableX = 0,
     tableY= 0,
@@ -17,7 +16,7 @@ local function OnAddonLoaded(self, event, addonName)
     if addonName == "MythicPlusLootTable" then
 
         -- Check if SavedVariables exist, if it does not, the default data will be saved
-        -- SavedVariables = SavedVariables or addonData
+        SavedVariables = SavedVariables or addonData
 
         -- ensures the icon is hidden based on iconHidden value
         if SavedVariables.iconHidden then
@@ -31,9 +30,16 @@ local function OnAddonLoaded(self, event, addonName)
         -- sets the icon to the saved point around the minimap
         lootTableIcon:SetPoint("CENTER", Minimap, "CENTER", SavedVariables.xPos, SavedVariables.yPos)
 
+        -- set value for for the popup time
+        popupTimer:SetValue(SavedVariables.popupTime)
+
         -- Unregister the event
         self:UnregisterEvent("ADDON_LOADED")
     end
+end
+
+function ResetSavedVariables()
+    SavedVariables = addonData
 end
 
 -- Registering the ADDON_LOADED event

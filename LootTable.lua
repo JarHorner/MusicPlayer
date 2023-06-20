@@ -35,17 +35,6 @@ local function CreateLootTable()
     myTable:EnableMouse(true)
     myTable:RegisterForDrag("LeftButton")
 
-    myTable:SetScript("OnUpdate", function(self, elapsed)
-        local point, relativeTo, relativePoint, x, y = myTable:GetPoint()
-
-        SavedVariables.tablePoint = point
-        SavedVariables.tableRelativeTo = relativeTo
-        SavedVariables.tableRelativePoint = relativePoint
-        SavedVariables.tableX = x
-        SavedVariables.tableY = y
-
-    end)
-
     local label = myTable:CreateFontString(nil, "OVERLAY", "GameFontNormal")
     label:SetPoint("TOP", myTable, "TOP", 0, -8)
     label:SetText("Mythic + Loot Table")
@@ -90,6 +79,13 @@ local function CreateLootTable()
     end)
     myTable:SetScript("OnDragStop", function(self)
         self:StopMovingOrSizing()
+
+        local point, relativeTo, relativePoint, x, y = myTable:GetPoint()
+
+        SavedVariables.tablePoint = point
+        SavedVariables.tableRelativePoint = relativePoint
+        SavedVariables.tableX = x
+        SavedVariables.tableY = y
     end)
     tinsert(UISpecialFrames, "MyTable")
 

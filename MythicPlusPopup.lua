@@ -1,7 +1,6 @@
 
 
 local popup = CreateFrame("Frame")
-local popupTime = SavedVariables.popupTime
 
 -- Shows a popup when a key begins showing the different loot you will receive from it
 local function ShowKeyLevelLoot()
@@ -9,9 +8,9 @@ local function ShowKeyLevelLoot()
     local weeklyRewardLevel, endOfRunRewardLevel = C_MythicPlus.GetRewardLevelForDifficultyLevel(activeKeystoneLevel)
 
     StaticPopupDialogs["KEY_STARTED"] = {
-        text = "Completion will give " .. endOfRunRewardLevel .. " ilvl end of run, " .. weeklyRewardLevel .. " weekly" ,
+        text = "Completion will give " .. endOfRunRewardLevel .. " end of run, " .. weeklyRewardLevel .. " weekly" ,
         button1 = "Ok",
-        timeout = popupTime,
+        timeout = SavedVariables.popupTime,
         whileDead = true,
         hideOnEscape = true,
     }
