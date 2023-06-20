@@ -4,6 +4,7 @@ local addonData = {
     yPos = -74.246212024587,
     popupTime = 5,
     tablePoint = "LEFT",
+    tableRelativeTo = UIParent,
     tableRelativePoint = "LEFT",
     tableX = 0,
     tableY= 0,

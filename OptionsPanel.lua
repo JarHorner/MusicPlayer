@@ -45,14 +45,7 @@ resetButton:SetScript("OnClick", function(self, button, down)
     -- Code to be executed when the button is clicked
     print("Button clicked!")
 
-    -- ResetTablePosition()
-
-    -- local frame = GetFrameByName("LootTable")
-    -- if frame then
-    --     print("found")
-    -- else
-    --     print("not found")
-    -- end
+    ResetTablePosition()
 
 end)
 

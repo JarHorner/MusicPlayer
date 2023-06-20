@@ -38,9 +38,8 @@ local function CreateLootTable()
     myTable:SetScript("OnUpdate", function(self, elapsed)
         local point, relativeTo, relativePoint, x, y = myTable:GetPoint()
 
-        print(point .. " " .. relativePoint)
-
         SavedVariables.tablePoint = point
+        SavedVariables.tableRelativeTo = relativeTo
         SavedVariables.tableRelativePoint = relativePoint
         SavedVariables.tableX = x
         SavedVariables.tableY = y
@@ -103,8 +102,6 @@ local f = CreateFrame("Frame", "LootTable")
 local function OnEvent(self, event, ...)
     lootTable = CreateLootTable()
 
-    -- ResetTablePosition()
-
     f:UnregisterEvent("PLAYER_LOGIN")
 end
 
@@ -114,9 +111,6 @@ f:SetScript("OnEvent", OnEvent)
 
 
 function ResetTablePosition()
-    local childFrames = lootTable:GetName()
 
-    print(childFrames)
-
-    lootTable:SetPoint("LEFT", UIParent, "LEFT", SavedVariables.tableX, SavedVariables.tableY)
+    lootTable:SetPoint("LEFT", SavedVariables.tableRelativeTo, "LEFT", 0, 0)
 end
