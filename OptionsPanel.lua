@@ -81,7 +81,6 @@ popupTimer:SetScript("OnValueChanged", function(self, value)
     popupTimerValue:SetText(value)
 
     SavedVariables.popupTime = value
-    print(SavedVariables.popupTime)
 end)
 
 -- toggles the minimap icon on/off
