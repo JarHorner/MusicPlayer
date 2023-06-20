@@ -3,6 +3,10 @@ local addonData = {
     xPos = -74.246212024588,
     yPos = -74.246212024587,
     popupTime = 5,
+    tablePoint = "LEFT",
+    tableRelativePoint = "LEFT",
+    tableX = 0,
+    tableY= 0,
 }
 
 SavedVariables = SavedVariables or addonData

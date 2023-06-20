@@ -8,17 +8,24 @@ local title = optionsPanel:CreateFontString("TITLE", nil, "GameFontNormalLarge")
 title:SetPoint("TOPLEFT", optionsPanel, "TOPLEFT", 16, -16)
 title:SetText("Mythic Plus Loot Table")
 
+-- creates button to reset position of loot table
+local resetButton = CreateFrame("Button", "resetTableButton", optionsPanel, "UIPanelButtonTemplate")
+resetButton:SetText("Reset Loot Table")
+resetButton:SetPoint("TOPLEFT", 14, -45) -- Button position
+resetButton:SetWidth(120) -- Button width
+resetButton:SetHeight(24) -- Button height
+
 -- Checkbox to toggle icon around minimap
 toggleCheckbox =
     CreateFrame("CheckButton", "MyAddonToggleCheckbox", optionsPanel, "InterfaceOptionsCheckButtonTemplate")
-toggleCheckbox:SetPoint("TOPLEFT", 14, -40) -- Adjust the position as desired
+toggleCheckbox:SetPoint("TOPLEFT", 14, -75) -- Adjust the position as desired
 toggleCheckbox.Text:SetText("Hide Minimap Icon") -- The label text displayed next to the checkbox
 
 -- Create a frame to hold the slider
 local popupTimer = CreateFrame("Slider", "MyAddonSliderFrame", optionsPanel, "UISliderTemplateWithLabels")
 popupTimer:SetWidth(200)
 popupTimer:SetHeight(20)
-popupTimer:SetPoint("TOPLEFT", 14, -86)
+popupTimer:SetPoint("TOPLEFT", 14, -120)
 
 -- Set the slider's parameters
 popupTimer:SetMinMaxValues(2, 10)
@@ -34,9 +41,29 @@ popupTimer.Text:SetText("M+ Loot Popup Time")
 popupTimer.Low:SetText("0")
 popupTimer.High:SetText("10")
 
+resetButton:SetScript("OnClick", function(self, button, down)
+    -- Code to be executed when the button is clicked
+    print("Button clicked!")
+
+    -- ResetTablePosition()
+
+    -- local frame = GetFrameByName("LootTable")
+    -- if frame then
+    --     print("found")
+    -- else
+    --     print("not found")
+    -- end
+
+end)
+
+-- creates popupTimer value
+local popupTimerValue = optionsPanel:CreateFontString("popupValue", nil, "GameFontNormalLarge")
+popupTimerValue:SetPoint("RIGHT", popupTimer, "RIGHT", 32, 0)
+popupTimerValue:SetText(SavedVariables.popupTime)
+
 -- Set up the slider's value change callback
 popupTimer:SetScript("OnValueChanged", function(self, value)
-
+    popupTimerValue:SetText(value)
     SavedVariables.popupTime = value
 end)
 

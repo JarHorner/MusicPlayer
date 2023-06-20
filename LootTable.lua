@@ -25,22 +25,35 @@ local lootTableData = {
 
 -- Creation of loot table that displays all loot information
 local function CreateLootTable()
-    local myFrame = CreateFrame("Frame", "MyFrame", UIParent, "BackdropTemplate")
+    local myTable = CreateFrame("Frame", "MyTable", UIParent, "BackdropTemplate")
 
-    myFrame:SetPoint("LEFT", UIParent, "LEFT")
-    myFrame:SetSize(420, 520)
-    myFrame:SetBackdrop(BACKDROP_TUTORIAL_16_16)
-    myFrame:SetMovable(true)
-    myFrame:EnableMouse(true)
-    myFrame:RegisterForDrag("LeftButton")
+    -- Uses saved variables to keep the position of the table stay the same from where you last left it
+    myTable:SetPoint(SavedVariables.tablePoint, UIParent, SavedVariables.tableRelativePoint, SavedVariables.tableX, SavedVariables.tableY)
+    myTable:SetSize(420, 520)
+    myTable:SetBackdrop(BACKDROP_TUTORIAL_16_16)
+    myTable:SetMovable(true)
+    myTable:EnableMouse(true)
+    myTable:RegisterForDrag("LeftButton")
 
-    local label = myFrame:CreateFontString(nil, "OVERLAY", "GameFontNormal")
-    label:SetPoint("TOP", myFrame, "TOP", 0, -8)
+    myTable:SetScript("OnUpdate", function(self, elapsed)
+        local point, relativeTo, relativePoint, x, y = myTable:GetPoint()
+
+        print(point .. " " .. relativePoint)
+
+        SavedVariables.tablePoint = point
+        SavedVariables.tableRelativePoint = relativePoint
+        SavedVariables.tableX = x
+        SavedVariables.tableY = y
+
+    end)
+
+    local label = myTable:CreateFontString(nil, "OVERLAY", "GameFontNormal")
+    label:SetPoint("TOP", myTable, "TOP", 0, -8)
     label:SetText("Mythic + Loot Table")
     label:SetFont("Fonts\\FRIZQT__.TTF", 18)
     label:SetTextColor(1, 1, 1)
 
-    local exitButton = CreateFrame("Button", "MyButton", myFrame, "BigRedExitButtonTemplate")
+    local exitButton = CreateFrame("Button", "MyButton", myTable, "BigRedExitButtonTemplate")
     exitButton:SetSize(30, 30)
     exitButton:SetPoint("TOPRIGHT")
     exitButton:SetScript("OnClick", function()
@@ -51,10 +64,10 @@ local function CreateLootTable()
     local padding = -32
     for i = 2, 20, 1 do
 
-        local cell = CreateFrame("Frame", "MyAddonTableCell1", myFrame, "BackdropTemplate")
+        local cell = CreateFrame("Frame", "MyAddonTableCell", myTable, "BackdropTemplate")
         cell:SetSize(350, 25)
         cell:SetBackdrop(BACKDROP_TUTORIAL_16_16)
-        cell:SetPoint("TOP", myFrame, "TOP", 0, padding)
+        cell:SetPoint("TOP", myTable, "TOP", 0, padding)
 
         local keyLevel = cell:CreateFontString(nil, "OVERLAY", "GameFontNormal")
         keyLevel:SetPoint("LEFT", cell, "LEFT", 15, 0)
@@ -73,22 +86,24 @@ local function CreateLootTable()
     end
 
     -- setting scripts to the main frame
-    myFrame:SetScript("OnDragStart", function(self, button)
+    myTable:SetScript("OnDragStart", function(self, button)
         self:StartMoving()
     end)
-    myFrame:SetScript("OnDragStop", function(self)
+    myTable:SetScript("OnDragStop", function(self)
         self:StopMovingOrSizing()
     end)
-    tinsert(UISpecialFrames, "MyFrame")
+    tinsert(UISpecialFrames, "MyTable")
 
-    return myFrame
+    return myTable
 end
 
-local f = CreateFrame("Frame")
+local f = CreateFrame("Frame", "LootTable")
 
 -- event creates the loot table
 local function OnEvent(self, event, ...)
     lootTable = CreateLootTable()
+
+    -- ResetTablePosition()
 
     f:UnregisterEvent("PLAYER_LOGIN")
 end
@@ -96,3 +111,12 @@ end
 -- Registering the PLAYER_LOGIN event
 f:RegisterEvent("PLAYER_LOGIN")
 f:SetScript("OnEvent", OnEvent)
+
+
+function ResetTablePosition()
+    local childFrames = lootTable:GetName()
+
+    print(childFrames)
+
+    lootTable:SetPoint("LEFT", UIParent, "LEFT", SavedVariables.tableX, SavedVariables.tableY)
+end
