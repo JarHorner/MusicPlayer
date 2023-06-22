@@ -17,6 +17,8 @@ ToggleOptionsMenu.lua
 
 Icon.lua
 
+keystoneToolTip.lua
+
 OptionsPanel.lua
 
 Commands.lua
