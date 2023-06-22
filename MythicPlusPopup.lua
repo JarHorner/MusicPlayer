@@ -20,8 +20,7 @@ end
 
 -- the event that creates the popup
 local function OnEvent(self, event, ...)
-	print(event, ...)
-    
+
 	ShowKeyLevelLoot()
 end
 
