@@ -33,6 +33,8 @@ _There are 2 ways you can install this addon and use it, it is available on Curs
 
 You can find it at CurseForge [here](https://www.curseforge.com/wow/addons/mythicplusloottable).
 
+or you can manuely install it, following these steps:
+
 1. Clone the repo or download it as a zip file
    ```sh
    git clone https://github.com/JarHorner/MythicPlusLootTable.git
