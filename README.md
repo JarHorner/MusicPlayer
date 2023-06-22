@@ -49,6 +49,7 @@ or you can manuely install it, following these steps:
 ## Usage
 
 This addon shows a table of each level of mythic plus dungeons, with the loot it will drops at the end and what you will get for your weekly for completing the dungeon.
+Also adds information to the tooltip of your keystone item, providing the completion and weekly item level of that keystone level.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
