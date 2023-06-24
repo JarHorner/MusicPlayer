@@ -47,16 +47,22 @@ resetButton:SetScript("OnClick", ShowPopup)
 
 
 -- Checkbox to toggle icon around minimap
-toggleCheckbox =
+toggleIconCheckbox =
     CreateFrame("CheckButton", "MyAddonToggleCheckbox", optionsPanel, "InterfaceOptionsCheckButtonTemplate")
-toggleCheckbox:SetPoint("TOPLEFT", 14, -75) -- Adjust the position as desired
-toggleCheckbox.Text:SetText("Hide Minimap Icon") -- The label text displayed next to the checkbox
+toggleIconCheckbox:SetPoint("TOPLEFT", 14, -75) -- Adjust the position as desired
+toggleIconCheckbox.Text:SetText("Hide Minimap Icon") -- The label text displayed next to the checkbox
+
+-- Checkbox to toggle popup
+togglePopupCheckbox =
+    CreateFrame("CheckButton", "MyAddonToggleCheckbox", optionsPanel, "InterfaceOptionsCheckButtonTemplate")
+togglePopupCheckbox:SetPoint("TOPLEFT", 14, -105) -- Adjust the position as desired
+togglePopupCheckbox.Text:SetText("Disable Popup") -- The label text displayed next to the checkbox
 
 -- Create a frame to hold the slider
 popupTimer = CreateFrame("Slider", "MyAddonSliderFrame", optionsPanel, "UISliderTemplateWithLabels")
 popupTimer:SetWidth(200)
 popupTimer:SetHeight(20)
-popupTimer:SetPoint("TOPLEFT", 14, -120)
+popupTimer:SetPoint("TOPLEFT", 14, -150)
 
 -- Set the slider's parameters
 popupTimer:SetMinMaxValues(2, 10)
@@ -84,7 +90,7 @@ popupTimer:SetScript("OnValueChanged", function(self, value)
 end)
 
 -- toggles the minimap icon on/off
-local function ToggleOption(checkbox)
+local function ToggleIcon(checkbox)
     local isChecked = checkbox:GetChecked()
 
     if isChecked or not SavedVariables.iconHidden then
@@ -98,7 +104,27 @@ local function ToggleOption(checkbox)
     end
 end
 
+-- toggles the popup for M+ loot on/off
+local function TogglePopup(checkbox)
+    local isChecked = checkbox:GetChecked()
+
+    if isChecked or not SavedVariables.popupDisabled then
+        -- Option is enabled
+        lootPopup:UnregisterEvent("CHALLENGE_MODE_START")
+        SavedVariables.popupDisabled = true
+    else
+        -- Option is disabled
+        lootPopup:RegisterEvent("CHALLENGE_MODE_START")
+        SavedVariables.popupDisabled = false
+    end
+end
+
 -- sets up the script on the checkbox that shows/hides the icon
-toggleCheckbox:SetScript("OnClick", function(self)
-    ToggleOption(self)
+toggleIconCheckbox:SetScript("OnClick", function(self)
+    ToggleIcon(self)
+end)
+
+-- sets up the script on the checkbox that shows/hides the icon
+togglePopupCheckbox:SetScript("OnClick", function(self)
+    TogglePopup(self)
 end)

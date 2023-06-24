@@ -1,5 +1,6 @@
 local addonData = {
     iconHidden = false,
+    popupDisabled = false,
     xPos = -74.246212024588,
     yPos = -74.246212024587,
     popupTime = 5,
@@ -24,8 +25,11 @@ local function OnAddonLoaded(self, event, addonName)
         else
             lootTableIcon:Show()
         end
-        -- ensures the checkbox is properly shown based on iconHidden value
-        toggleCheckbox:SetChecked(SavedVariables.iconHidden)
+        -- ensures the checkbox's are properly shown based on values
+        toggleIconCheckbox:SetChecked(SavedVariables.iconHidden)
+        togglePopupCheckbox:SetChecked(SavedVariables.popupDisabled)
+
+        myTable:SetPoint(SavedVariables.tablePoint, UIParent, SavedVariables.tableRelativePoint, SavedVariables.tableX, SavedVariables.tableY)
 
         -- sets the icon to the saved point around the minimap
         lootTableIcon:SetPoint("CENTER", Minimap, "CENTER", SavedVariables.xPos, SavedVariables.yPos)

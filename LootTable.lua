@@ -1,4 +1,6 @@
 
+myTable = CreateFrame("Frame", "MyTable", UIParent, "BackdropTemplate")
+
 -- a hard-coded loot table data because the API call to get these values does not when loading addon
 local lootTableData = {
     {0, 0},
@@ -25,15 +27,14 @@ local lootTableData = {
 
 -- Creation of loot table that displays all loot information
 local function CreateLootTable()
-    local myTable = CreateFrame("Frame", "MyTable", UIParent, "BackdropTemplate")
-
+    
     -- Uses saved variables to keep the position of the table stay the same from where you last left it
-    myTable:SetPoint(SavedVariables.tablePoint, UIParent, SavedVariables.tableRelativePoint, SavedVariables.tableX, SavedVariables.tableY)
     myTable:SetSize(420, 520)
     myTable:SetBackdrop(BACKDROP_TUTORIAL_16_16)
     myTable:SetMovable(true)
     myTable:EnableMouse(true)
     myTable:RegisterForDrag("LeftButton")
+    myTable:Hide()
 
     local label = myTable:CreateFontString(nil, "OVERLAY", "GameFontNormal")
     label:SetPoint("TOP", myTable, "TOP", 0, -8)

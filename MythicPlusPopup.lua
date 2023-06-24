@@ -1,6 +1,6 @@
 
 
-local popup = CreateFrame("Frame")
+lootPopup = CreateFrame("Frame")
 
 -- Shows a popup when a key begins showing the different loot you will receive from it
 local function ShowKeyLevelLoot()
@@ -19,11 +19,10 @@ local function ShowKeyLevelLoot()
 end
 
 -- the event that creates the popup
-local function OnEvent(self, event, ...)
-
+local function ShowLootPopup(self, event, ...)
 	ShowKeyLevelLoot()
 end
 
 -- the registered event is triggered upon starting a key
-popup:RegisterEvent("CHALLENGE_MODE_START")
-popup:SetScript("OnEvent", OnEvent)
+lootPopup:RegisterEvent("CHALLENGE_MODE_START")
+lootPopup:SetScript("OnEvent", ShowLootPopup)
