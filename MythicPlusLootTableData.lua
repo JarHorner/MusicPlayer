@@ -29,7 +29,7 @@ local function OnAddonLoaded(self, event, addonName)
         toggleIconCheckbox:SetChecked(SavedVariables.iconHidden)
         togglePopupCheckbox:SetChecked(SavedVariables.popupDisabled)
 
-        myTable:SetPoint(SavedVariables.tablePoint, UIParent, SavedVariables.tableRelativePoint, SavedVariables.tableX, SavedVariables.tableY)
+        myTable:SetPoint(SavedVariables.tablePoint, nil, SavedVariables.tableRelativePoint, SavedVariables.tableX, SavedVariables.tableY)
 
         -- sets the icon to the saved point around the minimap
         lootTableIcon:SetPoint("CENTER", Minimap, "CENTER", SavedVariables.xPos, SavedVariables.yPos)
