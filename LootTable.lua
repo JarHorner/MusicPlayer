@@ -25,6 +25,10 @@ local lootTableData = {
     {431, 447}
 }
 
+function ChangeTableScale(scale)
+    myTable:SetScale(scale)
+end
+
 -- Creation of loot table that displays all loot information
 local function CreateLootTable()
     
@@ -35,6 +39,7 @@ local function CreateLootTable()
     myTable:EnableMouse(true)
     myTable:RegisterForDrag("LeftButton")
     myTable:Hide()
+    -- myTable:SetScale(SavedVariables.tableScale)
 
     local label = myTable:CreateFontString(nil, "OVERLAY", "GameFontNormal")
     label:SetPoint("TOP", myTable, "TOP", 0, -8)

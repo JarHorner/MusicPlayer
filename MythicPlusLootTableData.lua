@@ -7,7 +7,8 @@ local addonData = {
     tablePoint = "LEFT",
     tableRelativePoint = "LEFT",
     tableX = 0,
-    tableY= 0,
+    tableY = 0,
+    tableScale = 1,
 }
 
 SavedVariables = SavedVariables or addonData
@@ -30,6 +31,8 @@ local function OnAddonLoaded(self, event, addonName)
         togglePopupCheckbox:SetChecked(SavedVariables.popupDisabled)
 
         myTable:SetPoint(SavedVariables.tablePoint, nil, SavedVariables.tableRelativePoint, SavedVariables.tableX, SavedVariables.tableY)
+
+        --ChangeTableScale(SavedVariables.tableScale)
 
         -- sets the icon to the saved point around the minimap
         lootTableIcon:SetPoint("CENTER", Minimap, "CENTER", SavedVariables.xPos, SavedVariables.yPos)
