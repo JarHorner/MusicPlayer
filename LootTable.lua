@@ -39,7 +39,7 @@ local function CreateLootTable()
     myTable:EnableMouse(true)
     myTable:RegisterForDrag("LeftButton")
     myTable:Hide()
-    -- myTable:SetScale(SavedVariables.tableScale)
+    --myTable:SetScale(SavedVariables.tableScale)
 
     local label = myTable:CreateFontString(nil, "OVERLAY", "GameFontNormal")
     label:SetPoint("TOP", myTable, "TOP", 0, -8)

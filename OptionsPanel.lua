@@ -82,6 +82,41 @@ local popupTimerValue = optionsPanel:CreateFontString("popupValue", nil, "GameFo
 popupTimerValue:SetPoint("RIGHT", popupTimer, "RIGHT", 32, 0)
 popupTimerValue:SetText(SavedVariables.popupTime)
 
+-- creates title of table size dropdown
+local tableSizeTitle = optionsPanel:CreateFontString("tableSizeTable", nil, "GameFontNormal")
+tableSizeTitle:SetPoint("TOPLEFT", 15, -190)
+tableSizeTitle:SetText("Size of Table")
+
+tableSizeDropdown = CreateFrame("Frame", "MyAddonDropdown", optionsPanel, "UIDropDownMenuTemplate")
+tableSizeDropdown:SetPoint("TOPLEFT", 0, -210)
+
+-- creates the table size dropdown menu
+UIDropDownMenu_Initialize(tableSizeDropdown, function(self, level, menuList)
+    -- The dropdown menu items
+    local items = {
+        { text = "Small", value = 0.8 },
+        { text = "Medium", value = 1 },
+        { text = "Large", value = 1.2 }
+    }
+
+    -- Function to handle the dropdown item selection
+    local function Dropdown_OnClick(self)
+        UIDropDownMenu_SetSelectedValue(tableSizeDropdown, self.value)
+        -- Handle the selected value here
+        SavedVariables.tableScale = self.value
+        ChangeTableScale(self.value)
+    end
+
+    -- Create the dropdown menu items
+    for _, item in ipairs(items) do
+        local info = UIDropDownMenu_CreateInfo()
+        info.text = item.text
+        info.value = item.value
+        info.func = Dropdown_OnClick
+        UIDropDownMenu_AddButton(info)
+    end
+end)
+
 -- Set up the slider's value change callback
 popupTimer:SetScript("OnValueChanged", function(self, value)
     popupTimerValue:SetText(value)

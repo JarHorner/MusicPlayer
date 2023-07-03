@@ -4,11 +4,11 @@ local addonData = {
     xPos = -74.246212024588,
     yPos = -74.246212024587,
     popupTime = 5,
+    tableScale = 0.8,
     tablePoint = "LEFT",
     tableRelativePoint = "LEFT",
     tableX = 0,
     tableY = 0,
-    tableScale = 1,
 }
 
 SavedVariables = SavedVariables or addonData
@@ -32,7 +32,9 @@ local function OnAddonLoaded(self, event, addonName)
 
         myTable:SetPoint(SavedVariables.tablePoint, nil, SavedVariables.tableRelativePoint, SavedVariables.tableX, SavedVariables.tableY)
 
-        --ChangeTableScale(SavedVariables.tableScale)
+        -- sets the size of the loot table
+        ChangeTableScale(SavedVariables.tableScale)
+        UIDropDownMenu_SetSelectedValue(tableSizeDropdown, SavedVariables.tableScale)
 
         -- sets the icon to the saved point around the minimap
         lootTableIcon:SetPoint("CENTER", Minimap, "CENTER", SavedVariables.xPos, SavedVariables.yPos)
