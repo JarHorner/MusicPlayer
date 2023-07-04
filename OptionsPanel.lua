@@ -94,9 +94,11 @@ tableSizeDropdown:SetPoint("TOPLEFT", 0, -210)
 UIDropDownMenu_Initialize(tableSizeDropdown, function(self, level, menuList)
     -- The dropdown menu items
     local items = {
-        { text = "Small", value = 0.8 },
+        { text = "Extra Small", value = 0.8 },
+        { text = "Small", value = 0.9 },
         { text = "Medium", value = 1 },
-        { text = "Large", value = 1.2 }
+        { text = "Large", value = 1.1 },
+        { text = "Extra Large", value = 1.2 }
     }
 
     -- Function to handle the dropdown item selection
