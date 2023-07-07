@@ -26,7 +26,13 @@ local lootTableData = {
 }
 
 function ChangeTableScale(scale)
-    myTable:SetScale(scale)
+    if ElvUI then
+        -- If ElvUI is present, use its scale system
+        myTable:SetScale(UIParent:GetEffectiveScale() * scale)
+    else
+        -- If ElvUI is not present, use the default SetScale method
+        myTable:SetScale(scale)
+    end
 end
 
 -- Creation of loot table that displays all loot information
@@ -39,7 +45,7 @@ local function CreateLootTable()
     myTable:EnableMouse(true)
     myTable:RegisterForDrag("LeftButton")
     myTable:Hide()
-    --myTable:SetScale(SavedVariables.tableScale)
+    -- myTable:SetScale(SavedVariables.tableScale)
 
     local label = myTable:CreateFontString(nil, "OVERLAY", "GameFontNormal")
     label:SetPoint("TOP", myTable, "TOP", 0, -8)
