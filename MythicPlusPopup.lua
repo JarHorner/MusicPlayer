@@ -4,7 +4,7 @@ lootPopup = CreateFrame("Frame")
 
 -- Shows a popup when a key begins showing the different loot you will receive from it
 local function ShowKeyLevelLoot()
-    if SavedVariables.popupDisabled then
+    if SavedVariables.popupDisabled == false then
         local activeKeystoneLevel = C_ChallengeMode.GetActiveKeystoneInfo()
         local weeklyRewardLevel, endOfRunRewardLevel = C_MythicPlus.GetRewardLevelForDifficultyLevel(activeKeystoneLevel)
     

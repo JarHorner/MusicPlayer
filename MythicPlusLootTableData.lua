@@ -30,10 +30,6 @@ local function OnAddonLoaded(self, event, addonName)
         toggleIconCheckbox:SetChecked(SavedVariables.iconHidden)
         togglePopupCheckbox:SetChecked(SavedVariables.popupDisabled)
 
-        if SavedVariables.popupDisabled then
-            lootPopup:UnregisterEvent("CHALLENGE_MODE_START")
-        end
-
         myTable:SetPoint(SavedVariables.tablePoint, nil, SavedVariables.tableRelativePoint, SavedVariables.tableX, SavedVariables.tableY)
 
         -- sets the size of the loot table
