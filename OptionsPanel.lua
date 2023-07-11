@@ -19,7 +19,7 @@ local function HidePopup()
 end
 -- Define the popup dialog
 local resetPopupDialog = {
-    text = "Are you sure you want to reset the saved variables? Reload to ensure changes are made",
+    text = "Are you sure you want to reset the saved variables? use /reload to ensure changes are made",
     button1 = "Yes",
     button2 = "No",
     OnAccept = function()
@@ -119,6 +119,12 @@ UIDropDownMenu_Initialize(tableSizeDropdown, function(self, level, menuList)
     end
 end)
 
+-- Checkbox to toggle keystone tooltip
+toggleTooltipCheckbox =
+    CreateFrame("CheckButton", "MyAddonToggleCheckbox", optionsPanel, "InterfaceOptionsCheckButtonTemplate")
+toggleTooltipCheckbox:SetPoint("TOPLEFT", 14, -240) -- Adjust the position as desired
+toggleTooltipCheckbox.Text:SetText("Disable Keystone Tooltip (requires reload)") -- The label text displayed next to the checkbox
+
 -- Set up the slider's value change callback
 popupTimer:SetScript("OnValueChanged", function(self, value)
     popupTimerValue:SetText(value)
@@ -156,12 +162,30 @@ local function TogglePopup(checkbox)
     end
 end
 
+-- toggles the popup for M+ loot on/off
+local function ToggleTooltip(checkbox)
+    local isChecked = checkbox:GetChecked()
+
+    if isChecked or not SavedVariables.tooltipHidden then
+        -- Option is enabled
+        SavedVariables.tooltipHidden = true
+    else
+        -- Option is disabled
+        SavedVariables.tooltipHidden = false
+    end
+end
+
 -- sets up the script on the checkbox that shows/hides the icon
 toggleIconCheckbox:SetScript("OnClick", function(self)
     ToggleIcon(self)
 end)
 
--- sets up the script on the checkbox that shows/hides the icon
+-- sets up the script on the checkbox that shows/hides the popup at beginning of m+
 togglePopupCheckbox:SetScript("OnClick", function(self)
     TogglePopup(self)
+end)
+
+-- sets up the script on the checkbox that shows/hides the tooltip on a keystone
+toggleTooltipCheckbox:SetScript("OnClick", function(self)
+    ToggleTooltip(self)
 end)

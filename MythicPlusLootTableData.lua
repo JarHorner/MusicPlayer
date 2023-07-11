@@ -5,6 +5,7 @@ local addonData = {
     yPos = -74.246212024587,
     popupTime = 5,
     tableScale = 1,
+    tooltipHidden = false,
     tablePoint = "LEFT",
     tableRelativePoint = "LEFT",
     tableX = 0,
@@ -29,6 +30,13 @@ local function OnAddonLoaded(self, event, addonName)
         -- ensures the checkbox's are properly shown based on values
         toggleIconCheckbox:SetChecked(SavedVariables.iconHidden)
         togglePopupCheckbox:SetChecked(SavedVariables.popupDisabled)
+        toggleTooltipCheckbox:SetChecked(SavedVariables.tooltipHidden)
+        
+        print(tostring(SavedVariables.tooltipHidden))
+
+        if not SavedVariables.tooltipHidden then
+            TooltipDataProcessor.AddTooltipPostCall(Enum.TooltipDataType.Item, OnTooltipSetItem)
+        end
 
         myTable:SetPoint(SavedVariables.tablePoint, nil, SavedVariables.tableRelativePoint, SavedVariables.tableX, SavedVariables.tableY)
 

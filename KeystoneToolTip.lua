@@ -1,6 +1,5 @@
 
-
-local function OnTooltipSetItem(tooltip, data)
+function OnTooltipSetItem(tooltip, data)
     if string.match(data.lines[1].leftText, "Keystone") then
         if tooltip == GameTooltip then
 
@@ -15,12 +14,3 @@ local function OnTooltipSetItem(tooltip, data)
         end
     end
 end
-
--- Replace 'Enum.TooltipDataType.Item' with an appropriate type for the tooltip
--- data you are wanting to process; eg. use 'Enum.TooltipDataType.Spell' for
--- replacing usage of OnTooltipSetSpell.
---
--- If you wish to respond to all tooltip data updates, you can instead replace
--- the enum with 'TooltipDataProcessor.AllTypes' (or the string "ALL").
-
-TooltipDataProcessor.AddTooltipPostCall(Enum.TooltipDataType.Item, OnTooltipSetItem)
