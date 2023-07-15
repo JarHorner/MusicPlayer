@@ -31,8 +31,6 @@ local function OnAddonLoaded(self, event, addonName)
         toggleIconCheckbox:SetChecked(SavedVariables.iconHidden)
         togglePopupCheckbox:SetChecked(SavedVariables.popupDisabled)
         toggleTooltipCheckbox:SetChecked(SavedVariables.tooltipHidden)
-        
-        print(tostring(SavedVariables.tooltipHidden))
 
         if not SavedVariables.tooltipHidden then
             TooltipDataProcessor.AddTooltipPostCall(Enum.TooltipDataType.Item, OnTooltipSetItem)
