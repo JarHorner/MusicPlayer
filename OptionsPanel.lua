@@ -122,7 +122,7 @@ end)
 -- Checkbox to toggle keystone tooltip
 toggleTooltipCheckbox =
     CreateFrame("CheckButton", "MyAddonToggleCheckbox", optionsPanel, "InterfaceOptionsCheckButtonTemplate")
-toggleTooltipCheckbox:SetPoint("TOPLEFT", 14, -240) -- Adjust the position as desired
+toggleTooltipCheckbox:SetPoint("TOPLEFT", 14, -245) -- Adjust the position as desired
 toggleTooltipCheckbox.Text:SetText("Disable Keystone Tooltip (requires reload)") -- The label text displayed next to the checkbox
 
 -- Set up the slider's value change callback
