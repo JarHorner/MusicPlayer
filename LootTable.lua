@@ -1,16 +1,16 @@
 myTable = CreateFrame("Frame", "MyTable", UIParent, "BackdropTemplate")
 
 -- a hard-coded loot table data because the API call to get these values does not when loading addon
-local lootTableData = {{0, "", 0, ""}, {402, "Veteran 1/8", 415, "Champion 1/8"},
-                       {405, "Veteran 2/8", 418, "Champion 1/8"}, {405, "Veteran 2/8", 421, "Champion 2/8"},
-                       {408, "Veteran 3/8", 421, "Champion 2/8"}, {408, "Veteran 3/8", 424, "Champion 3/8"},
-                       {411, "Veteran 4/8", 424, "Champion 3/8"}, {411, "Veteran 4/8", 428, "Hero 1/5"},
-                       {415, "Champion 1/8", 428, "Hero 1/5"}, {415, "Champion 1/8", 431, "Hero 2/5"},
-                       {418, "Champion 2/8", 431, "Hero 2/5"}, {418, "Champion 2/8", 434, "Hero 3/5"},
-                       {421, "Champion 3/8", 434, "Hero 3/5"}, {421, "Champion 3/8", 437, "Hero 4/5"},
-                       {424, "Champion 4/8", 437, "Hero 4/5"}, {424, "Champion 4/8", 441, "Myth 1/3"},
-                       {428, "Hero 1/5", 441, "Myth 1/3"}, {428, "Hero 1/5", 444, "Myth 2/3"},
-                       {431, "Hero 2/5", 444, "Myth 2/3"}, {431, "Hero 2/5", 447, "Myth 3/3"}}
+local lootTableData = {{0, "", 0, ""}, {441, "Veteran 1/8", 454, "Champion 1/8"},
+                       {444, "Veteran 2/8", 457, "Champion 2/8"}, {444, "Veteran 2/8", 460, "Champion 3/8"},
+                       {447, "Veteran 3/8", 460, "Champion 3/8"}, {447, "Veteran 3/8", 463, "Champion 4/8"},
+                       {450, "Veteran 4/8", 463, "Champion 4/8"}, {450, "Veteran 4/8", 467, "Hero 1/6"},
+                       {454, "Champion 1/8", 467, "Hero 1/6"}, {454, "Champion 1/8", 470, "Hero 2/6"},
+                       {457, "Champion 2/8", 470, "Hero 2/6"}, {457, "Champion 2/8", 473, "Hero 3/6"},
+                       {460, "Champion 3/8", 473, "Hero 3/6"}, {460, "Champion 3/8", 473, "Hero 3/6"},
+                       {463, "Champion 4/8", 476, "Hero 4/6"}, {463, "Champion 4/8", 476, "Hero 4/6"},
+                       {467, "Hero 1/6", 476, "Hero 4/6"}, {467, "Hero 1/6", 480, "Myth 1/4"},
+                       {470, "Hero 2/6", 480, "Myth 1/4"}, {470, "Hero 2/6", 483, "Myth 2/4"}}
 
 function ChangeTableScale(scale)
     if ElvUI then
