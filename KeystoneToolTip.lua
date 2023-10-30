@@ -1,6 +1,6 @@
 
 function OnTooltipSetItem(tooltip, data)
-    if string.match(data.lines[1].leftText, "Keystone") then
+    if string.match(data.lines[1].leftText, "Keystone:") then
         if tooltip == GameTooltip then
 
             local keyLevel = string.sub(data.lines[2].leftText, 14, 16)
