@@ -1,16 +1,16 @@
 myTable = CreateFrame("Frame", "MyTable", UIParent, "BackdropTemplate")
 
--- a hard-coded loot table data because the API call to get these values does not when loading addon
-local lootTableData = {{0, "", 0, ""}, {441, "Veteran 1/8", 454, "Champion 1/8"},
-                       {444, "Veteran 2/8", 457, "Champion 2/8"}, {444, "Veteran 2/8", 460, "Champion 3/8"},
-                       {447, "Veteran 3/8", 460, "Champion 3/8"}, {447, "Veteran 3/8", 463, "Champion 4/8"},
-                       {450, "Veteran 4/8", 463, "Champion 4/8"}, {450, "Veteran 4/8", 467, "Hero 1/6"},
-                       {454, "Champion 1/8", 467, "Hero 1/6"}, {454, "Champion 1/8", 470, "Hero 2/6"},
-                       {457, "Champion 2/8", 470, "Hero 2/6"}, {457, "Champion 2/8", 473, "Hero 3/6"},
-                       {460, "Champion 3/8", 473, "Hero 3/6"}, {460, "Champion 3/8", 473, "Hero 3/6"},
-                       {463, "Champion 4/8", 476, "Hero 4/6"}, {463, "Champion 4/8", 476, "Hero 4/6"},
-                       {467, "Hero 1/6", 476, "Hero 4/6"}, {467, "Hero 1/6", 480, "Myth 1/4"},
-                       {470, "Hero 2/6", 480, "Myth 1/4"}, {470, "Hero 2/6", 483, "Myth 2/4"}}
+-- a hard-coded loot table data because the API call to get these values does not work properly when loading addon
+local lootTableData = {{0, "", 0, ""},
+                        {496, "Champion 2/8", 509, "Hero 2/6"},
+                        {499, "Champion 3/8", 509, "Hero 2/6"},
+                        {499, "Champion 3/8", 512, "Hero 3/6"},
+                        {502, "Champion 4/8", 512, "Hero 3/6"},
+                        {502, "Champion 4/8", 515, "Hero 4/6"},
+                        {506, "Hero 1/6", 515, "Hero 4/6"},
+                        {506, "Hero 1/6", 519, "Myth 1/4"},
+                        {509, "Hero 2/6", 519, "Myth 1/4"},
+                        {509, "Hero 2/6", 522, "Myth 2/4"}}
 
 function ChangeTableScale(scale)
     if ElvUI then
@@ -26,7 +26,7 @@ end
 local function CreateLootTable()
 
     -- Uses saved variables to keep the position of the table stay the same from where you last left it
-    myTable:SetSize(450, 570)
+    myTable:SetSize(450, 360)
     myTable:SetBackdrop(BACKDROP_TUTORIAL_16_16)
     myTable:SetMovable(true)
     myTable:EnableMouse(true)
@@ -35,9 +35,9 @@ local function CreateLootTable()
     -- myTable:SetScale(SavedVariables.tableScale)
 
     local label = myTable:CreateFontString(nil, "OVERLAY", "GameFontNormal")
-    label:SetPoint("TOP", myTable, "TOP", 0, -8)
+    label:SetPoint("TOP", myTable, "TOP", 0, -10)
     label:SetText("Mythic + Loot Table")
-    label:SetFont("Fonts\\FRIZQT__.TTF", 18)
+    label:SetFont("Fonts\\FRIZQT__.TTF", 20)
     label:SetTextColor(1, 1, 1)
     label:SetScale(1.2)
 
@@ -54,7 +54,7 @@ local function CreateLootTable()
     local headers = CreateFrame("Frame", "MyAddonTableCell", myTable, "BackdropTemplate")
     headers:SetSize(420, 25)
     headers:SetBackdrop(nil)
-    headers:SetPoint("TOP", myTable, "TOP", 0, padding)
+    headers:SetPoint("TOP", myTable, "TOP", 0, padding + -20)
 
     local levelHeader = headers:CreateFontString(nil, "OVERLAY", "GameFontNormal")
     levelHeader:SetPoint("CENTER", headers, "CENTER", -150, 0)
@@ -74,9 +74,9 @@ local function CreateLootTable()
     weeklyHeader:SetTextColor(1, 1, 1)
     weeklyHeader:SetScale(1.2)
 
-    padding = padding + -25
+    padding = padding + -45
 
-    for i = 2, 20, 1 do
+    for i = 2, 10, 1 do
 
         local cell = CreateFrame("Frame", "MyAddonTableCell", myTable, "BackdropTemplate")
         cell:SetSize(420, 25)
