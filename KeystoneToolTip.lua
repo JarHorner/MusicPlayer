@@ -1,5 +1,4 @@
-local AddonName, MPLT = ...
-local L = MPLT.L
+local MPLT = MPLT
 
 function OnTooltipSetItem(tooltip, data)
     if string.match(data.lines[1].leftText, "Keystone:") then
@@ -10,8 +9,8 @@ function OnTooltipSetItem(tooltip, data)
 
             tooltip:AddLine(" ")
             tooltip:AddLine(L["Addon Name"], 1, 1, 1)
-            tooltip:AddDoubleLine(L["Keystone Hover Text 1"], endOfRunRewardLevel .. " ilvl", 1, 1, 1)
-            tooltip:AddDoubleLine(L["Keystone Hover Text 2"], weeklyRewardLevel .. " ilvl", 1, 1, 1)
+            tooltip:AddDoubleLine(MPLT["Keystone Hover Text 1"], endOfRunRewardLevel .. " ilvl", 1, 1, 1)
+            tooltip:AddDoubleLine(MPLT["Keystone Hover Text 2"], weeklyRewardLevel .. " ilvl", 1, 1, 1)
 
         end
     end

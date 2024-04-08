@@ -1,5 +1,4 @@
-local AddonName, MPLT = ...
-local L = MPLT.L
+local MPLT = MPLT
 
 SLASH_OPENTABLE1 = "/showlt"
 SLASH_OPENSETTINGS1 = "/ltsettings"
@@ -16,6 +15,6 @@ local chatFrame = DEFAULT_CHAT_FRAME
 
 -- Prints a messge on the command in the chat frame when the player logs in
 local function CommandMessage()
-    chatFrame:AddMessage(L["Startup Message"], 0.1, 0.9, 0.8)
+    chatFrame:AddMessage(MPLT["Startup Message"], 0.1, 0.9, 0.8)
 end
 CommandMessage()

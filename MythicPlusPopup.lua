@@ -1,5 +1,4 @@
-local AddonName, MPLT = ...
-local L = MPLT.L
+local MPLT = MPLT
 
 lootPopup = CreateFrame("Frame")
 
@@ -10,8 +9,8 @@ local function ShowKeyLevelLoot()
         local weeklyRewardLevel, endOfRunRewardLevel = C_MythicPlus.GetRewardLevelForDifficultyLevel(activeKeystoneLevel)
     
         StaticPopupDialogs["KEY_STARTED"] = {
-            text = L["Popup Text 1"] .. endOfRunRewardLevel .. L["Popup Text 2"] .. weeklyRewardLevel .. L["Popup Text 3"] ,
-            button1 = L["Popup Button"],
+            text = MPLT["Popup Text 1"] .. endOfRunRewardLevel .. MPLT["Popup Text 2"] .. weeklyRewardLevel .. MPLT["Popup Text 3"] ,
+            button1 = MPLT["Popup Button"],
             timeout = SavedVariables.popupTime,
             whileDead = true,
             hideOnEscape = true,

@@ -1,5 +1,4 @@
-local AddonName, MPLT = ...
-local L = MPLT.L
+local MPLT = MPLT
 
 local function getAnchors(frame)
 	local x, y = frame:GetCenter()
@@ -138,9 +137,9 @@ lootTableIcon:SetScript("OnClick", function(self, button, down)
 end)
 
 -- Set up the tooltip text
-lootTableIcon.tooltipTitle = L["Addon Name"]
-lootTableIcon.tooltipText1 = L["Tooltip Text 1"]
-lootTableIcon.tooltipText2 = L["Tooltip Text 2"]
+lootTableIcon.tooltipTitle = MPLT["Addon Name"]
+lootTableIcon.tooltipText1 = MPLT["Tooltip Text 1"]
+lootTableIcon.tooltipText2 = MPLT["Tooltip Text 2"]
 
 -- Sets up the OnEnter and OnLeave script handlers that shows the tooltip
 lootTableIcon:SetScript("OnEnter", function(self)
