@@ -1,4 +1,4 @@
-local MPLT = MPLT.L
+local MPLT = MPLT
 
 -- Creation of options panel in Addons settings 
 local optionsPanel = CreateFrame("Frame")
