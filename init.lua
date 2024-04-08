@@ -1,0 +1,3 @@
+local AddonName, MPLT = ...
+_G["MPLT"] = MPLT
+MPLT.L = {}

@@ -40,7 +40,10 @@ end
 local function CreateLootTable()
 
     -- Uses saved variables to keep the position of the table stay the same from where you last left it
-    myTable:SetSize(450, 360)
+    
+    --myTable:SetSize(450, 360)
+    myTable:SetSize(450, 570)
+
     myTable:SetBackdrop(BACKDROP_TUTORIAL_16_16)
     myTable:SetMovable(true)
     myTable:EnableMouse(true)
@@ -49,9 +52,15 @@ local function CreateLootTable()
     -- myTable:SetScale(SavedVariables.tableScale)
 
     local label = myTable:CreateFontString(nil, "OVERLAY", "GameFontNormal")
-    label:SetPoint("TOP", myTable, "TOP", 0, -10)
+    
+    --label:SetPoint("TOP", myTable, "TOP", 0, -10)
+    label:SetPoint("TOP", myTable, "TOP", 0, -8)
+
     label:SetText(L["Addon Name"])
-    label:SetFont("Fonts\\FRIZQT__.TTF", 20)
+
+    --label:SetFont("Fonts\\FRIZQT__.TTF", 20)
+    label:SetFont("Fonts\\FRIZQT__.TTF", 18)
+
     label:SetTextColor(1, 1, 1)
     label:SetScale(1.2)
 
@@ -68,7 +77,9 @@ local function CreateLootTable()
     local headers = CreateFrame("Frame", "MyAddonTableCell", myTable, "BackdropTemplate")
     headers:SetSize(420, 25)
     headers:SetBackdrop(nil)
-    headers:SetPoint("TOP", myTable, "TOP", 0, padding + -20)
+
+    --headers:SetPoint("TOP", myTable, "TOP", 0, padding + -20)
+    headers:SetPoint("TOP", myTable, "TOP", 0, padding)
 
     local levelHeader = headers:CreateFontString(nil, "OVERLAY", "GameFontNormal")
     levelHeader:SetPoint("CENTER", headers, "CENTER", -150, 0)
@@ -88,10 +99,11 @@ local function CreateLootTable()
     weeklyHeader:SetTextColor(1, 1, 1)
     weeklyHeader:SetScale(1.2)
 
-    padding = padding + -45
+    --padding = padding + -45
+    padding = padding + -25
 
-    for i = 2, 10, 1 do
-
+    --for i = 2, 10, 1 do
+     for i = 2, 20, 1 do
         local cell = CreateFrame("Frame", "MyAddonTableCell", myTable, "BackdropTemplate")
         cell:SetSize(420, 25)
         cell:SetBackdrop(BACKDROP_TUTORIAL_16_16)

@@ -1,4 +1,4 @@
-## Interface: 100300
+## Interface: 100206
 ## Title: MythicPlusLootTable
 ## Notes: Shows a table of the weekly and end of run rewards depending on the keystone level
 ## Author: Jarret Horner
