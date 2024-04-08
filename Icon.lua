@@ -1,3 +1,5 @@
+local AddonName, MPLT = ...
+local L = MPLT.L
 
 local function getAnchors(frame)
 	local x, y = frame:GetCenter()
@@ -136,9 +138,9 @@ lootTableIcon:SetScript("OnClick", function(self, button, down)
 end)
 
 -- Set up the tooltip text
-lootTableIcon.tooltipTitle = "Mythic Plus Loot Table"
-lootTableIcon.tooltipText1 = "Left Click: Toggle Table Window"
-lootTableIcon.tooltipText2 = "Right Click: Open Options Menu"
+lootTableIcon.tooltipTitle = L["Addon Name"]
+lootTableIcon.tooltipText1 = L["Tooltip Text 1"]
+lootTableIcon.tooltipText2 = L["Tooltip Text 2"]
 
 -- Sets up the OnEnter and OnLeave script handlers that shows the tooltip
 lootTableIcon:SetScript("OnEnter", function(self)

@@ -1,3 +1,5 @@
+local AddonName, MPLT = ...
+local L = MPLT.L
 
 function OnTooltipSetItem(tooltip, data)
     if string.match(data.lines[1].leftText, "Keystone:") then
@@ -7,9 +9,9 @@ function OnTooltipSetItem(tooltip, data)
             local weeklyRewardLevel, endOfRunRewardLevel = C_MythicPlus.GetRewardLevelForDifficultyLevel(keyLevel)
 
             tooltip:AddLine(" ")
-            tooltip:AddLine("Mythic Plus Loot Table", 1, 1, 1)
-            tooltip:AddDoubleLine("Completion: ", endOfRunRewardLevel .. " ilvl", 1, 1, 1)
-            tooltip:AddDoubleLine("Weekly: ", weeklyRewardLevel .. " ilvl", 1, 1, 1)
+            tooltip:AddLine(L["Addon Name"], 1, 1, 1)
+            tooltip:AddDoubleLine(L["Keystone Hover Text 1"], endOfRunRewardLevel .. " ilvl", 1, 1, 1)
+            tooltip:AddDoubleLine(L["Keystone Hover Text 2"], weeklyRewardLevel .. " ilvl", 1, 1, 1)
 
         end
     end

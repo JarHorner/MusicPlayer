@@ -6,6 +6,9 @@
 
 ##SavedVariables: SavedVariables
 
+init.lua
+locales.xml
+
 MythicPlusLootTableData.lua
 
 LootTable.lua

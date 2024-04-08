@@ -1,16 +1,30 @@
+local AddonName, MPLT = ...
+local L = MPLT.L
+
 myTable = CreateFrame("Frame", "MyTable", UIParent, "BackdropTemplate")
 
 -- a hard-coded loot table data because the API call to get these values does not work properly when loading addon
-local lootTableData = {{0, "", 0, ""},
-                        {496, "Champion 2/8", 509, "Hero 2/6"},
-                        {499, "Champion 3/8", 509, "Hero 2/6"},
-                        {499, "Champion 3/8", 512, "Hero 3/6"},
-                        {502, "Champion 4/8", 512, "Hero 3/6"},
-                        {502, "Champion 4/8", 515, "Hero 4/6"},
-                        {506, "Hero 1/6", 515, "Hero 4/6"},
-                        {506, "Hero 1/6", 519, "Myth 1/4"},
-                        {509, "Hero 2/6", 519, "Myth 1/4"},
-                        {509, "Hero 2/6", 522, "Myth 2/4"}}
+-- local lootTableData = {{0, "", 0, ""},
+--                         {496, L["Upgrade Track Champion"] .. " 2/8", 509, L["Upgrade Track Hero"] .. " 2/6"},
+--                         {499, L["Upgrade Track Champion"] .. " 3/8", 509, L["Upgrade Track Hero"] .. " 2/6"},
+--                         {499, L["Upgrade Track Champion"] .. " 3/8", 512, L["Upgrade Track Hero"] .. " 3/6"},
+--                         {502, L["Upgrade Track Champion"] .. " 4/8", 512, L["Upgrade Track Hero"] .. " 3/6"},
+--                         {502, L["Upgrade Track Champion"] .. " 4/8", 515, L["Upgrade Track Hero"] .. " 4/6"},
+--                         {506, L["Upgrade Track Hero"] .. " 1/6", 515, L["Upgrade Track Hero"] .. " 4/6"},
+--                         {506, L["Upgrade Track Hero"] .. " 1/6", 519, L["Upgrade Track Myth"] .. " 1/4"},
+--                         {509, L["Upgrade Track Hero"] .. " 2/6", 519, L["Upgrade Track Myth"] .. " 1/4"},
+--                         {509, L["Upgrade Track Hero"] .. " 2/6", 522, L["Upgrade Track Myth"] .. " 2/4"}}
+
+local lootTableData = {{0, "", 0, ""}, {441, "Veteran 1/8", 454, L["Upgrade Track Champion"] .. " 1/8"},
+                       {444, "Veteran 2/8", 457, L["Upgrade Track Champion"] .. " 2/8"}, {444, "Veteran 2/8", 460, L["Upgrade Track Champion"] .. " 3/8"},
+                       {447, "Veteran 3/8", 460, L["Upgrade Track Champion"] .. " 3/8"}, {447, "Veteran 3/8", 463, L["Upgrade Track Champion"] .. " 4/8"},
+                       {450, "Veteran 4/8", 463, L["Upgrade Track Champion"] .. " 4/8"}, {450, "Veteran 4/8", 467, L["Upgrade Track Hero"] .. " 1/6"},
+                       {454, L["Upgrade Track Champion"] .. " 1/8", 467, L["Upgrade Track Hero"] .. " 1/6"}, {454, L["Upgrade Track Champion"] .. " 1/8", 470, L["Upgrade Track Hero"] .. " 2/6"},
+                       {457, L["Upgrade Track Champion"] .. " 2/8", 470, L["Upgrade Track Hero"] .. " 2/6"}, {457, L["Upgrade Track Champion"] .. " 2/8", 473, L["Upgrade Track Hero"] .. " 3/6"},
+                       {460, L["Upgrade Track Champion"] .. " 3/8", 473, L["Upgrade Track Hero"] .. " 3/6"}, {460, L["Upgrade Track Champion"] .. " 3/8", 473, L["Upgrade Track Hero"] .. " 3/6"},
+                       {463, L["Upgrade Track Champion"] .. " 4/8", 476, L["Upgrade Track Hero"] .. " 4/6"}, {463, L["Upgrade Track Champion"] .. " 4/8", 476, L["Upgrade Track Hero"] .. " 4/6"},
+                       {467, L["Upgrade Track Hero"] .. " 1/6", 476, L["Upgrade Track Hero"] .. " 4/6"}, {467, L["Upgrade Track Hero"] .. " 1/6", 480, L["Upgrade Track Myth"] .. " 1/4"},
+                       {470, L["Upgrade Track Hero"] .. " 2/6", 480, L["Upgrade Track Myth"] .. " 1/4"}, {470, L["Upgrade Track Hero"] .. " 2/6", 483, L["Upgrade Track Myth"] .. " 2/4"}}
 
 function ChangeTableScale(scale)
     if ElvUI then
@@ -36,7 +50,7 @@ local function CreateLootTable()
 
     local label = myTable:CreateFontString(nil, "OVERLAY", "GameFontNormal")
     label:SetPoint("TOP", myTable, "TOP", 0, -10)
-    label:SetText("Mythic + Loot Table")
+    label:SetText(L["Addon Name"])
     label:SetFont("Fonts\\FRIZQT__.TTF", 20)
     label:SetTextColor(1, 1, 1)
     label:SetScale(1.2)
@@ -58,19 +72,19 @@ local function CreateLootTable()
 
     local levelHeader = headers:CreateFontString(nil, "OVERLAY", "GameFontNormal")
     levelHeader:SetPoint("CENTER", headers, "CENTER", -150, 0)
-    levelHeader:SetText("Level")
+    levelHeader:SetText(L["Level Header"])
     levelHeader:SetTextColor(1, 1, 1)
     levelHeader:SetScale(1.2)
 
     local completionHeader = headers:CreateFontString(nil, "OVERLAY", "GameFontNormal")
     completionHeader:SetPoint("CENTER", headers, "CENTER", -30, 0)
-    completionHeader:SetText("End of Dungeon")
+    completionHeader:SetText(L["End of Dungeon Header"])
     completionHeader:SetTextColor(1, 1, 1)
     completionHeader:SetScale(1.2)
 
     local weeklyHeader = headers:CreateFontString(nil, "OVERLAY", "GameFontNormal")
     weeklyHeader:SetPoint("CENTER", headers, "CENTER", 110, 0)
-    weeklyHeader:SetText("Vault")
+    weeklyHeader:SetText(L["Vault Header"])
     weeklyHeader:SetTextColor(1, 1, 1)
     weeklyHeader:SetScale(1.2)
 
@@ -106,7 +120,7 @@ local function CreateLootTable()
 
     local explanation = bracketsExplanation:CreateFontString(nil, "OVERLAY", "GameFontNormal")
     explanation:SetPoint("CENTER", bracketsExplanation, "CENTER", 0, 0)
-    explanation:SetText("Upgrade Level of the gear is in the brackets")
+    explanation:SetText(L["Table Note"])
     explanation:SetTextColor(1, 1, 1)
     explanation:SetScale(1.1)
 

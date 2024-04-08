@@ -1,12 +1,15 @@
+local AddonName, MPLT = ...
+local L = MPLT.L
+
 -- Creation of options panel in Addons settings 
 local optionsPanel = CreateFrame("Frame")
-optionsPanel.name = "Mythic Plus Loot Table"
+optionsPanel.name = L["Addon Name"]
 InterfaceOptions_AddCategory(optionsPanel)
 
 -- creates title
 local title = optionsPanel:CreateFontString("TITLE", nil, "GameFontNormalLarge")
 title:SetPoint("TOPLEFT", optionsPanel, "TOPLEFT", 16, -16)
-title:SetText("Mythic Plus Loot Table")
+title:SetText(L["Addon Name"])
 
 -- Function to show the popup
 local function ShowPopup()
@@ -19,9 +22,9 @@ local function HidePopup()
 end
 -- Define the popup dialog
 local resetPopupDialog = {
-    text = "Are you sure you want to reset the saved variables? use /reload to ensure changes are made",
-    button1 = "Yes",
-    button2 = "No",
+    text = L["Reset Settings Text"],
+    button1 = L["Yes Button"],
+    button2 = L["No Button"],
     OnAccept = function()
         ResetSavedVariables()
     end,
@@ -39,7 +42,7 @@ StaticPopupDialogs["RESET_POPUP_DIALOG"] = resetPopupDialog
 
 -- creates button to reset position of loot table
 local resetButton = CreateFrame("Button", "resetTableButton", optionsPanel, "UIPanelButtonTemplate")
-resetButton:SetText("Reset Addon Variables")
+resetButton:SetText(L["Reset Variables Button"])
 resetButton:SetPoint("TOPLEFT", 14, -45) -- Button position
 resetButton:SetWidth(150) -- Button width
 resetButton:SetHeight(24) -- Button height
@@ -50,13 +53,13 @@ resetButton:SetScript("OnClick", ShowPopup)
 toggleIconCheckbox =
     CreateFrame("CheckButton", "MyAddonToggleCheckbox", optionsPanel, "InterfaceOptionsCheckButtonTemplate")
 toggleIconCheckbox:SetPoint("TOPLEFT", 14, -75) -- Adjust the position as desired
-toggleIconCheckbox.Text:SetText("Hide Minimap Icon") -- The label text displayed next to the checkbox
+toggleIconCheckbox.Text:SetText(L["Hide Minimap Toggle"]) -- The label text displayed next to the checkbox
 
 -- Checkbox to toggle popup
 togglePopupCheckbox =
     CreateFrame("CheckButton", "MyAddonToggleCheckbox", optionsPanel, "InterfaceOptionsCheckButtonTemplate")
 togglePopupCheckbox:SetPoint("TOPLEFT", 14, -105) -- Adjust the position as desired
-togglePopupCheckbox.Text:SetText("Disable Popup") -- The label text displayed next to the checkbox
+togglePopupCheckbox.Text:SetText(L["Disable Popup Toggle"]) -- The label text displayed next to the checkbox
 
 -- Create a frame to hold the slider
 popupTimer = CreateFrame("Slider", "MyAddonSliderFrame", optionsPanel, "UISliderTemplateWithLabels")
@@ -73,7 +76,7 @@ local sliderText = _G[popupTimer:GetName() .. "Text"]
 local sliderLow = _G[popupTimer:GetName() .. "Low"]
 local sliderHigh = _G[popupTimer:GetName() .. "High"]
 
-popupTimer.Text:SetText("M+ Loot Popup Time")
+popupTimer.Text:SetText(L["Popup Timer Text"])
 popupTimer.Low:SetText("2")
 popupTimer.High:SetText("10")
 
@@ -85,7 +88,7 @@ popupTimerValue:SetText(SavedVariables.popupTime)
 -- creates title of table size dropdown
 local tableSizeTitle = optionsPanel:CreateFontString("tableSizeTable", nil, "GameFontNormal")
 tableSizeTitle:SetPoint("TOPLEFT", 15, -190)
-tableSizeTitle:SetText("Size of Table")
+tableSizeTitle:SetText(L["Size of Table"])
 
 tableSizeDropdown = CreateFrame("Frame", "MyAddonDropdown", optionsPanel, "UIDropDownMenuTemplate")
 tableSizeDropdown:SetPoint("TOPLEFT", 0, -210)
@@ -94,11 +97,11 @@ tableSizeDropdown:SetPoint("TOPLEFT", 0, -210)
 UIDropDownMenu_Initialize(tableSizeDropdown, function(self, level, menuList)
     -- The dropdown menu items
     local items = {
-        { text = "Extra Small", value = 0.8 },
-        { text = "Small", value = 0.9 },
-        { text = "Medium", value = 1 },
-        { text = "Large", value = 1.1 },
-        { text = "Extra Large", value = 1.2 }
+        { text = L["Extra Small Size"], value = 0.8 },
+        { text = L["Small Size"], value = 0.9 },
+        { text = L["Medium Size"], value = 1 },
+        { text = L["Large Size"], value = 1.1 },
+        { text = L["Extra Large Size"], value = 1.2 }
     }
 
     -- Function to handle the dropdown item selection
@@ -123,7 +126,7 @@ end)
 toggleTooltipCheckbox =
     CreateFrame("CheckButton", "MyAddonToggleCheckbox", optionsPanel, "InterfaceOptionsCheckButtonTemplate")
 toggleTooltipCheckbox:SetPoint("TOPLEFT", 14, -245) -- Adjust the position as desired
-toggleTooltipCheckbox.Text:SetText("Disable Keystone Tooltip (requires reload)") -- The label text displayed next to the checkbox
+toggleTooltipCheckbox.Text:SetText(L["Disable Keystone Tooltip Toggle"]) -- The label text displayed next to the checkbox
 
 -- Set up the slider's value change callback
 popupTimer:SetScript("OnValueChanged", function(self, value)
