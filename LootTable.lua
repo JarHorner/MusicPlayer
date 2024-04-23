@@ -14,17 +14,6 @@ local lootTableData = {{0, "", 0, ""},
                         {509, MPLT["Upgrade Track Hero"] .. " 2/6", 519, MPLT["Upgrade Track Myth"] .. " 1/4"},
                         {509, MPLT["Upgrade Track Hero"] .. " 2/6", 522, MPLT["Upgrade Track Myth"] .. " 2/4"}}
 
--- local lootTableData = {{0, "", 0, ""}, {441, MPLT["Upgrade Track Veteran"] .. " 1/8", 454, MPLT["Upgrade Track Champion"] .. " 1/8"},
---                        {444, MPLT["Upgrade Track Veteran"] .. " 2/8", 457, MPLT["Upgrade Track Champion"] .. " 2/8"}, {444, MPLT["Upgrade Track Veteran"] .. " 2/8", 460, MPLT["Upgrade Track Champion"] .. " 3/8"},
---                        {447, MPLT["Upgrade Track Veteran"] .. " 3/8", 460, MPLT["Upgrade Track Champion"] .. " 3/8"}, {447, MPLT["Upgrade Track Veteran"] .. " 3/8", 463, MPLT["Upgrade Track Champion"] .. " 4/8"},
---                        {450, MPLT["Upgrade Track Veteran"] .. " 4/8", 463, MPLT["Upgrade Track Champion"] .. " 4/8"}, {450, MPLT["Upgrade Track Veteran"] .. " 4/8", 467, MPLT["Upgrade Track Hero"] .. " 1/6"},
---                        {454, MPLT["Upgrade Track Champion"] .. " 1/8", 467, MPLT["Upgrade Track Hero"] .. " 1/6"}, {454, MPLT["Upgrade Track Champion"] .. " 1/8", 470, MPLT["Upgrade Track Hero"] .. " 2/6"},
---                        {457, MPLT["Upgrade Track Champion"] .. " 2/8", 470, MPLT["Upgrade Track Hero"] .. " 2/6"}, {457, MPLT["Upgrade Track Champion"] .. " 2/8", 473, MPLT["Upgrade Track Hero"] .. " 3/6"},
---                        {460, MPLT["Upgrade Track Champion"] .. " 3/8", 473, MPLT["Upgrade Track Hero"] .. " 3/6"}, {460, MPLT["Upgrade Track Champion"] .. " 3/8", 473, MPLT["Upgrade Track Hero"] .. " 3/6"},
---                        {463, MPLT["Upgrade Track Champion"] .. " 4/8", 476, MPLT["Upgrade Track Hero"] .. " 4/6"}, {463, MPLT["Upgrade Track Champion"] .. " 4/8", 476, MPLT["Upgrade Track Hero"] .. " 4/6"},
---                        {467, MPLT["Upgrade Track Hero"] .. " 1/6", 476, MPLT["Upgrade Track Hero"] .. " 4/6"}, {467, MPLT["Upgrade Track Hero"] .. " 1/6", 480, MPLT["Upgrade Track Myth"] .. " 1/4"},
---                        {470, MPLT["Upgrade Track Hero"] .. " 2/6", 480, MPLT["Upgrade Track Myth"] .. " 1/4"}, {470, MPLT["Upgrade Track Hero"] .. " 2/6", 483, MPLT["Upgrade Track Myth"] .. " 2/4"}}
-
 function ChangeTableScale(scale)
     if ElvUI then
         -- If ElvUI is present, use its scale system
@@ -47,7 +36,7 @@ local function CreateLootTable()
     myTable:EnableMouse(true)
     myTable:RegisterForDrag("LeftButton")
     myTable:Hide()
-    -- myTable:SetScale(SavedVariables.tableScale)
+    myTable:SetScale(SavedVariables.tableScale)
 
     local label = myTable:CreateFontString(nil, "OVERLAY", "GameFontNormal")
     
