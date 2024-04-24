@@ -2,18 +2,6 @@ local MPLT = MPLT
 
 myTable = CreateFrame("Frame", "MyTable", UIParent, "BackdropTemplate")
 
--- a hard-coded loot table data because the API call to get these values does not work properly when loading addon
-local lootTableData = {{0, "", 0, ""},
-                        {496, MPLT["Upgrade Track Champion"] .. " 2/8", 509, MPLT["Upgrade Track Hero"] .. " 2/6"},
-                        {499, MPLT["Upgrade Track Champion"] .. " 3/8", 509, MPLT["Upgrade Track Hero"] .. " 2/6"},
-                        {499, MPLT["Upgrade Track Champion"] .. " 3/8", 512, MPLT["Upgrade Track Hero"] .. " 3/6"},
-                        {502, MPLT["Upgrade Track Champion"] .. " 4/8", 512, MPLT["Upgrade Track Hero"] .. " 3/6"},
-                        {502, MPLT["Upgrade Track Champion"] .. " 4/8", 515, MPLT["Upgrade Track Hero"] .. " 4/6"},
-                        {506, MPLT["Upgrade Track Hero"] .. " 1/6", 515, MPLT["Upgrade Track Hero"] .. " 4/6"},
-                        {506, MPLT["Upgrade Track Hero"] .. " 1/6", 519, MPLT["Upgrade Track Myth"] .. " 1/4"},
-                        {509, MPLT["Upgrade Track Hero"] .. " 2/6", 519, MPLT["Upgrade Track Myth"] .. " 1/4"},
-                        {509, MPLT["Upgrade Track Hero"] .. " 2/6", 522, MPLT["Upgrade Track Myth"] .. " 2/4"}}
-
 function ChangeTableScale(scale)
     if ElvUI then
         -- If ElvUI is present, use its scale system
