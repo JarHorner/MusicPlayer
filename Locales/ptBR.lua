@@ -18,9 +18,8 @@ if not ((GAME_LOCALE or GetLocale()) == "ptBR") then
   MPLT["No Button"] = "Não"
   --[[Translation missing --]]
   MPLT["Popup Button"] = "Ok"
-  MPLT["Popup Text 1"] = "A conclusão dará"
-  MPLT["Popup Text 2"] = "fim da corrida,"
-  MPLT["Popup Text 3"] = "semanalmente"
+  MPLT["Popup Text 1"] = "A conclusão dará:"
+  MPLT["Popup Text 2"] = "A semanalmente dará:"
   MPLT["Popup Timer Text"] = "Tempo de pop-up do saque M+"
   MPLT["Reset Settings Text"] = "Tem certeza de que deseja redefinir as variáveis ​​salvas? usar /reload para garantir que as alterações sejam feitas"
   MPLT["Reset Variables Button"] = "Redefinir variáveis ​​de complemento"
@@ -30,9 +29,11 @@ if not ((GAME_LOCALE or GetLocale()) == "ptBR") then
   MPLT["Table Note"] = "O nível de atualização do equipamento está entre colchetes"
   MPLT["Tooltip Text 1"] = "Clique esquerdo: Alternar janela da tabela"
   MPLT["Tooltip Text 2"] = "Clique com o botão direito: abrir menu de opções"
+  MPLT["Upgrade Track Adventurer"] = "Aventureiro"
   MPLT["Upgrade Track Champion"] = "Campeão"
   MPLT["Upgrade Track Hero"] = "Herói"
   MPLT["Upgrade Track Myth"] = "Mito"
   MPLT["Upgrade Track Veteran"] = "Veterano"
   MPLT["Vault Header"] = "Cofre"
   MPLT["Yes Button"] = "Sim"
+  
