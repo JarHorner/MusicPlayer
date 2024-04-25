@@ -17,7 +17,7 @@ local function CreateLootTable()
 
     -- Uses saved variables to keep the position of the table stay the same from where you last left it
     
-    myTable:SetSize(450, 360)
+    myTable:SetSize(450, 400)
 
     myTable:SetBackdrop(BACKDROP_TUTORIAL_16_16)
     myTable:SetMovable(true)
@@ -74,7 +74,7 @@ local function CreateLootTable()
 
     padding = padding + -45
 
-    for i = 2, 10, 1 do
+    for i = 1, 11, 1 do
         local cell = CreateFrame("Frame", "MyAddonTableCell", myTable, "BackdropTemplate")
         cell:SetSize(420, 25)
         cell:SetBackdrop(BACKDROP_TUTORIAL_16_16)
@@ -82,7 +82,17 @@ local function CreateLootTable()
 
         local keyLevel = cell:CreateFontString(nil, "OVERLAY", "GameFontNormal")
         keyLevel:SetPoint("CENTER", cell, "CENTER", -180, 0)
-        keyLevel:SetText(i)
+        if (i == 1) then
+            keyLevel:SetText("H")
+        end
+        if (i == 2) then
+            keyLevel:SetText("0")
+        end
+        if (i > 2) then
+            keyLevel:SetText(i - 1)
+        end
+        
+        
         keyLevel:SetTextColor(1, 1, 1)
 
         local completion = cell:CreateFontString(nil, "OVERLAY", "GameFontNormal")
