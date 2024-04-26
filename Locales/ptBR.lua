@@ -18,8 +18,8 @@ if not ((GAME_LOCALE or GetLocale()) == "ptBR") then
   MPLT["No Button"] = "Não"
   --[[Translation missing --]]
   MPLT["Popup Button"] = "Ok"
-  MPLT["Popup Text 1"] = "A conclusão dará:"
-  MPLT["Popup Text 2"] = "A semanalmente dará:"
+  MPLT["Popup Text 1"] = "A conclusão dará: "
+  MPLT["Popup Text 2"] = "A semanalmente dará: "
   MPLT["Popup Timer Text"] = "Tempo de pop-up do saque M+"
   MPLT["Reset Settings Text"] = "Tem certeza de que deseja redefinir as variáveis ​​salvas? usar /reload para garantir que as alterações sejam feitas"
   MPLT["Reset Variables Button"] = "Redefinir variáveis ​​de complemento"
