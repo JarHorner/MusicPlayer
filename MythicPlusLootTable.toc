@@ -11,6 +11,8 @@ locales.xml
 
 MythicPlusLootTableData.lua
 
+OptionsPanel.lua
+
 LootTable.lua
 
 MythicPlusPopup.lua
@@ -21,7 +23,5 @@ ToggleOptionsMenu.lua
 Icon.lua
 
 keystoneToolTip.lua
-
-OptionsPanel.lua
 
 Commands.lua

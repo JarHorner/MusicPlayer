@@ -1,9 +1,6 @@
-local MPLT = MPLT
-
 -- Creation of options panel in Addons settings 
-local optionsPanel = CreateFrame("Frame")
+local optionsPanel = CreateFrame("Frame", "MythicPlusLootTableOptions", UIParent)
 optionsPanel.name = MPLT["Addon Name"]
-InterfaceOptions_AddCategory(optionsPanel)
 
 -- creates title
 local title = optionsPanel:CreateFontString("TITLE", nil, "GameFontNormalLarge")
@@ -33,7 +30,7 @@ local resetPopupDialog = {
     timeout = 0, -- Set to 0 for no timeout
     whileDead = true,
     hideOnEscape = true,
-    preferredIndex = STATICPOPUP_NUMDIALOGS,
+    preferredIndex = STATICPOPUP_NUMDIALOGS
 }
 
 -- Register the popup dialog
@@ -47,16 +44,15 @@ resetButton:SetWidth(150) -- Button width
 resetButton:SetHeight(24) -- Button height
 resetButton:SetScript("OnClick", ShowPopup)
 
-
 -- Checkbox to toggle icon around minimap
-toggleIconCheckbox =
-    CreateFrame("CheckButton", "MyAddonToggleCheckbox", optionsPanel, "InterfaceOptionsCheckButtonTemplate")
+toggleIconCheckbox = CreateFrame("CheckButton", "MyAddonToggleCheckbox", optionsPanel,
+    "InterfaceOptionsCheckButtonTemplate")
 toggleIconCheckbox:SetPoint("TOPLEFT", 14, -75) -- Adjust the position as desired
 toggleIconCheckbox.Text:SetText(MPLT["Hide Minimap Toggle"]) -- The label text displayed next to the checkbox
 
 -- Checkbox to toggle popup
-togglePopupCheckbox =
-    CreateFrame("CheckButton", "MyAddonToggleCheckbox", optionsPanel, "InterfaceOptionsCheckButtonTemplate")
+togglePopupCheckbox = CreateFrame("CheckButton", "MyAddonToggleCheckbox", optionsPanel,
+    "InterfaceOptionsCheckButtonTemplate")
 togglePopupCheckbox:SetPoint("TOPLEFT", 14, -105) -- Adjust the position as desired
 togglePopupCheckbox.Text:SetText(MPLT["Disable Popup Toggle"]) -- The label text displayed next to the checkbox
 
@@ -95,13 +91,22 @@ tableSizeDropdown:SetPoint("TOPLEFT", 0, -210)
 -- creates the table size dropdown menu
 UIDropDownMenu_Initialize(tableSizeDropdown, function(self, level, menuList)
     -- The dropdown menu items
-    local items = {
-        { text = MPLT["Extra Small Size"], value = 0.8 },
-        { text = MPLT["Small Size"], value = 0.9 },
-        { text = MPLT["Medium Size"], value = 1 },
-        { text = MPLT["Large Size"], value = 1.1 },
-        { text = MPLT["Extra Large Size"], value = 1.2 }
-    }
+    local items = {{
+        text = MPLT["Extra Small Size"],
+        value = 0.8
+    }, {
+        text = MPLT["Small Size"],
+        value = 0.9
+    }, {
+        text = MPLT["Medium Size"],
+        value = 1
+    }, {
+        text = MPLT["Large Size"],
+        value = 1.1
+    }, {
+        text = MPLT["Extra Large Size"],
+        value = 1.2
+    }}
 
     -- Function to handle the dropdown item selection
     local function Dropdown_OnClick(self)
@@ -122,8 +127,8 @@ UIDropDownMenu_Initialize(tableSizeDropdown, function(self, level, menuList)
 end)
 
 -- Checkbox to toggle keystone tooltip
-toggleTooltipCheckbox =
-    CreateFrame("CheckButton", "MyAddonToggleCheckbox", optionsPanel, "InterfaceOptionsCheckButtonTemplate")
+toggleTooltipCheckbox = CreateFrame("CheckButton", "MyAddonToggleCheckbox", optionsPanel,
+    "InterfaceOptionsCheckButtonTemplate")
 toggleTooltipCheckbox:SetPoint("TOPLEFT", 14, -245) -- Adjust the position as desired
 toggleTooltipCheckbox.Text:SetText(MPLT["Disable Keystone Tooltip Toggle"]) -- The label text displayed next to the checkbox
 
@@ -191,3 +196,6 @@ end)
 toggleTooltipCheckbox:SetScript("OnClick", function(self)
     ToggleTooltip(self)
 end)
+
+mythicPlusLootTableOptionsCategory = Settings.RegisterCanvasLayoutCategory(optionsPanel, MPLT["Addon Name"])
+Settings.RegisterAddOnCategory(mythicPlusLootTableOptionsCategory)

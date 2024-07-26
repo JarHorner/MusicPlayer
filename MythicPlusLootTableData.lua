@@ -13,17 +13,17 @@ local addonData = {
 }
 
 -- a hard-coded loot table data because the API call to get these values does not work properly when loading addon
-lootTableData = {{476, MPLT["Upgrade Track Adventurer"] .. " 4/8", 486, MPLT["Upgrade Track Adventurer"] .. " 7/8"},
-                    {493, MPLT["Upgrade Track Champion"] .. " 1/8", 506, MPLT["Upgrade Track Hero"] .. " 1/6"},
-                    {496, MPLT["Upgrade Track Champion"] .. " 2/8", 509, MPLT["Upgrade Track Hero"] .. " 2/6"},
-                    {499, MPLT["Upgrade Track Champion"] .. " 3/8", 509, MPLT["Upgrade Track Hero"] .. " 2/6"},
-                    {499, MPLT["Upgrade Track Champion"] .. " 3/8", 512, MPLT["Upgrade Track Hero"] .. " 3/6"},
-                    {502, MPLT["Upgrade Track Champion"] .. " 4/8", 512, MPLT["Upgrade Track Hero"] .. " 3/6"},
-                    {502, MPLT["Upgrade Track Champion"] .. " 4/8", 515, MPLT["Upgrade Track Hero"] .. " 4/6"},
-                    {506, MPLT["Upgrade Track Hero"] .. " 1/6", 515, MPLT["Upgrade Track Hero"] .. " 4/6"},
-                    {506, MPLT["Upgrade Track Hero"] .. " 1/6", 519, MPLT["Upgrade Track Myth"] .. " 1/4"},
-                    {509, MPLT["Upgrade Track Hero"] .. " 2/6", 519, MPLT["Upgrade Track Myth"] .. " 1/4"},
-                    {509, MPLT["Upgrade Track Hero"] .. " 2/6", 522, MPLT["Upgrade Track Myth"] .. " 2/4"}}
+lootTableData = {{580, MPLT["Upgrade Track Adventurer"] .. " 4/8", 593, MPLT["Upgrade Track Veteran"] .. " 4/8"},
+                    {593, MPLT["Upgrade Track Veteran"] .. " 4/8", 603, MPLT["Upgrade Track Champion"] .. " 3/6"},
+                    {597, MPLT["Upgrade Track Champion"] .. " 1/8", 506, MPLT["Upgrade Track Champion"] .. " 4/8"},
+                    {597, MPLT["Upgrade Track Champion"] .. " 1/8", 610, MPLT["Upgrade Track Hero"] .. " 1/6"},
+                    {600, MPLT["Upgrade Track Champion"] .. " 2/8", 610, MPLT["Upgrade Track Hero"] .. " 1/6"},
+                    {603, MPLT["Upgrade Track Champion"] .. " 3/8", 613, MPLT["Upgrade Track Hero"] .. " 2/6"},
+                    {606, MPLT["Upgrade Track Champion"] .. " 4/8", 613, MPLT["Upgrade Track Hero"] .. " 2/6"},
+                    {610, MPLT["Upgrade Track Hero"] .. " 1/6", 616, MPLT["Upgrade Track Hero"] .. " 3/6"},
+                    {610, MPLT["Upgrade Track Hero"] .. " 1/6", 619, MPLT["Upgrade Track Hero"] .. " 4/6"},
+                    {613, MPLT["Upgrade Track Hero"] .. " 2/6", 619, MPLT["Upgrade Track Hero"] .. " 4/6"},
+                    {613, MPLT["Upgrade Track Hero"] .. " 2/6", 623, MPLT["Upgrade Track Myth"] .. " 1/6"}}
 
 SavedVariables = SavedVariables or addonData
 

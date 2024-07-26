@@ -92,7 +92,6 @@ local function CreateLootTable()
             keyLevel:SetText(i - 1)
         end
         
-        
         keyLevel:SetTextColor(1, 1, 1)
 
         local completion = cell:CreateFontString(nil, "OVERLAY", "GameFontNormal")
