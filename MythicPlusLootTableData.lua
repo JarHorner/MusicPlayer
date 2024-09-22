@@ -15,7 +15,7 @@ local addonData = {
 -- a hard-coded loot table data because the API call to get these values does not work properly when loading addon
 lootTableData = {{580, MPLT["Upgrade Track Adventurer"] .. " 4/8", 593, MPLT["Upgrade Track Veteran"] .. " 4/8"},
                     {593, MPLT["Upgrade Track Veteran"] .. " 4/8", 603, MPLT["Upgrade Track Champion"] .. " 3/6"},
-                    {597, MPLT["Upgrade Track Champion"] .. " 1/8", 506, MPLT["Upgrade Track Champion"] .. " 4/8"},
+                    {597, MPLT["Upgrade Track Champion"] .. " 1/8", 606, MPLT["Upgrade Track Champion"] .. " 4/8"},
                     {597, MPLT["Upgrade Track Champion"] .. " 1/8", 610, MPLT["Upgrade Track Hero"] .. " 1/6"},
                     {600, MPLT["Upgrade Track Champion"] .. " 2/8", 610, MPLT["Upgrade Track Hero"] .. " 1/6"},
                     {603, MPLT["Upgrade Track Champion"] .. " 3/8", 613, MPLT["Upgrade Track Hero"] .. " 2/6"},
